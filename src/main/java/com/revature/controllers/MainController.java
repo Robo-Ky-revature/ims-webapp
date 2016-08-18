@@ -22,7 +22,7 @@ public class MainController {
 	@Autowired
 	private BusinessDelegate bd;
 	
-	private List<Client> clients = new Vector<Client>();
+	private List<Object> clients = new Vector<Object>();
 	private List<Product> products = new Vector<Product>();
 	
 	@RequestMapping(value="goHome.do", method=RequestMethod.GET)
@@ -45,7 +45,8 @@ public class MainController {
 	@RequestMapping(value="getAllClients.do", method=RequestMethod.GET,
 			produces="application/json")
 	public List<Object> getAllClients() {
-		return bd.getAllClients();
+		clients = bd.getAllClients();
+		return clients;
 	}
 	
 }
