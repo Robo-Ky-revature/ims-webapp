@@ -21,7 +21,7 @@
 
   <body>
 	
-	<jsp:include page="navbar.jsp"/>
+	<jsp:include page="navbar.jsp"></jsp:include>
 	<script>
 		$(".navbar-brand").addClass("active");
 	</script>

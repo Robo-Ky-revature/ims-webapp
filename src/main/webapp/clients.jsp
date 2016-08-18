@@ -22,7 +22,7 @@
 
   <body>
 	
-	<jsp:include page="navbar.jsp"/>
+	<jsp:include page="navbar.jsp"></jsp:include>
 	<script>
 		$("#navcli").addClass("active");
 	</script>
@@ -43,32 +43,6 @@
 							<th>Phone</th>
 							<th>Fax</th>
 							<th>Actions</th>
-						</tr>
-						<tr id="thisrow">
-							<td class="tdid">1</td>
-							<td class="tdname">Wizards of the Coast</td>
-							<td class="tdemail">press@wizards.com</td>
-							<td class="tdtype">Supplier</td>
-							<td class="tdadd">P.O. Box 707 <br> Renton, WA 98057</td>
-							<td class="tdphone">425-226-6500</td>
-							<td class="tdfax">425-970-8233</td>
-							<td class="tdacts">
-								<button type="button" class="btn btn-default btn-sm update">Update</button>
-								<button type="button" class="btn btn-default btn-sm delete">Delete</button>
-							</td>
-						</tr>
-						<tr id="thatrow">
-							<td class="tdid">2</td>
-							<td class="tdname">Mayfair Games</td>
-							<td class="tdemail">sales@mayfair.com</td>
-							<td class="tdtype">Supplier</td>
-							<td class="tdadd">8060 St. Louis Ave <br> Stokie, IL 60076</td>
-							<td class="tdphone">847-677-6655</td>
-							<td class="tdfax">847-677-6253</td>
-							<td class="tdacts">
-								<button type="button" class="btn btn-default btn-sm update">Update</button>
-								<button type="button" class="btn btn-default btn-sm delete">Delete</button>
-							</td>
 						</tr>
 					</table>
 				</div>
@@ -99,7 +73,8 @@
 	    		</div>
 		    	<h4>Address</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		  			<textarea id="newadd" class="form-control" name="address" rows="4"></textarea>
+		  			<input id="newaddline1" type="text" name="streetAddress1" class="form-control" />
+		  			<input id="newaddline2" type="text" name="streetAddress2" class="form-control" />
 		    	</div>
 		    	<h4>Phone</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
@@ -137,7 +112,8 @@
 	    		</div>
 		    	<h4>Address</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		  			<textarea id="upadd" class="form-control" name="address" rows="4"></textarea>
+		  			<input id="upaddline1" type="text" name="streetAddress1" class="form-control" />
+		  			<input id="upaddline2" type="text" name="streetAddress2" class="form-control" />
 		    	</div>
 		    	<h4>Phone</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
