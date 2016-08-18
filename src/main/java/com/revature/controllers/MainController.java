@@ -1,9 +1,12 @@
 package com.revature.controllers;
 
 import com.revature.beans.*;
+import com.revature.service.BusinessDelegate;
+
 import java.util.*;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,9 @@ public class MainController {
 	@Autowired
 	private ServletContext context;
 	
+	@Autowired
+	private BusinessDelegate bd;
+	
 	private List<Client> clients = new Vector<Client>();
 	private List<Product> products = new Vector<Product>();
 	
@@ -25,13 +31,21 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="goClients.do", method=RequestMethod.GET)
-	public String clients() {
+	public String clients(HttpServletRequest request) {
+		request.setAttribute("newClient", new Client());
 		return "clients";
 	}
 	
 	@RequestMapping(value="goProducts.do", method=RequestMethod.GET)
-	public String products() {
+	public String products(HttpServletRequest request) {
+		request.setAttribute("newProduct", new Product());
 		return "products";
+	}
+	
+	@RequestMapping(value="getAllClients.do", method=RequestMethod.GET,
+			produces="application/json")
+	public List<Object> getAllClients() {
+		return bd.getAllClients();
 	}
 	
 }

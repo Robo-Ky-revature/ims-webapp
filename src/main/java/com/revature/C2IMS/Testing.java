@@ -6,6 +6,7 @@ import com.revature.beans.Client;
 import com.revature.beans.ClientType;
 import com.revature.beans.State;
 import com.revature.database.DataLayer;
+import com.revature.service.BusinessDelegate;
 
 public class Testing {
 public static void main(String[] args) {
@@ -23,8 +24,8 @@ public static void main(String[] args) {
 //	ClientType ct= new ClientType(1, "Supplier");
 //	DataLayer dl = new DataLayer();
 //	dl.createRow(ct);
-	DataLayer dl = new DataLayer();
-	List<Object> clients = dl.selectAllRows(new Client());
+	BusinessDelegate bd = new BusinessDelegate();
+	List<Object> clients = bd.getAllClients();
 	if (clients != null)
 		System.out.println(((Client) clients.get(0)).getName());
 	else

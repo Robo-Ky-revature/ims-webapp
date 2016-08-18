@@ -4,10 +4,15 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.beans.State;
 
+@Service
 public class DataLayer {
+	
+	@Autowired
 	DAO dao;
 	private Session session;
 	public DataLayer(){

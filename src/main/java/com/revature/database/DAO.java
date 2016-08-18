@@ -4,8 +4,9 @@ package com.revature.database;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public class DAO {
 	 private Session session;
 	public DAO(Session session){
