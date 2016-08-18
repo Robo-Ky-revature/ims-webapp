@@ -73,8 +73,11 @@
 	    		</div>
 		    	<h4>Address</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		  			<input id="newaddline1" type="text" name="streetAddress1" class="form-control" />
-		  			<input id="newaddline2" type="text" name="streetAddress2" class="form-control" />
+		  			<input id="newaddline1" type="text" name="streetAddress1" class="form-control" placeholder="Street address line 1"/>
+		  			<input id="newaddline2" type="text" name="streetAddress2" class="form-control" placeholder="Street address line 2"/>
+		  			<input id="newaddcity" type="text" name="city" class="form-control" placeholder="City" />
+		  			<input id="newaddstate" type="text" name="state" class="form-control" placeholder="AL" />
+		  			<input id="newaddzip" type="text" name="zip" class="form-control" placeholder="Zip" />
 		    	</div>
 		    	<h4>Phone</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
@@ -112,8 +115,11 @@
 	    		</div>
 		    	<h4>Address</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		  			<input id="upaddline1" type="text" name="streetAddress1" class="form-control" />
-		  			<input id="upaddline2" type="text" name="streetAddress2" class="form-control" />
+		  			<input id="upaddline1" type="text" name="streetAddress1" class="form-control" placeholder="Street address line 1"/>
+		  			<input id="upaddline2" type="text" name="streetAddress2" class="form-control" placeholder="Street address line 2"/>
+		  			<input id="upaddcity" type="text" name="city" class="form-control" placeholder="City" />
+		  			<input id="upaddstate" type="text" name="state" class="form-control" placeholder="State (abbreviation)" />
+		  			<input id="upaddzip" type="text" name="zip" class="form-control" placeholder="Zip" />
 		    	</div>
 		    	<h4>Phone</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
