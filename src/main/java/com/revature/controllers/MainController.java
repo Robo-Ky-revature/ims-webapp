@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.IMS.BusinessDelegate;
+import com.revature.beans.Product;
 
 @Controller
 public class MainController {
@@ -44,6 +45,10 @@ public class MainController {
 	public List<Object> getAllClients() {
 		clients = bd.getAllClients();
 		return clients;
+	}
+	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
+	public void createNewProduct(Product product){
+		bd.createProduct(product);
 	}
 	
 }

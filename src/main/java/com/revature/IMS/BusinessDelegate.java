@@ -12,5 +12,10 @@ public class BusinessDelegate {
 	public List<Object> getAllClients() {
 		return dl.selectAllRows(new Client());
 	}
+
+	public void createProduct(Product product) {
+		dl.createRow(product);
+		
+	}
 	
 }

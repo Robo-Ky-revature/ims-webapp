@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -83,36 +85,48 @@
 	        <h4 class="modal-title" id="myModalLabel">New Product</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form id="newForm" action = "#" method="post">
+	      	<form:form id="newForm" action = "createProduct.do" method="post">
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newname" type="text" name="name" class="form-control" />
+	    			<form:input id="newname" type="text" path="productName" class="form-control" />
+	    		</div>
+	    		<h4>Shorthand</h4>
+	    		<div class="input-group" style="padding-bottom: 15px;">
+	    			<form:input id="newshort" type="text" path="shortName" class="form-control" />
+	    		</div>
+	    		<h4>Initial Quantity</h4>
+	    		<div class="input-group" style="padding-bottom: 15px;">
+	    			<form:input id="newquan" type="text" path="reorder" class="form-control" />
 	    		</div>
 	    		<h4>Weight</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newwei" type="text" name="weight" class="form-control" />
+	    			<form:input id="newwei" type="text" path="weight" class="form-control" />
 	    		</div>
 	    		<h4>Size</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newsize" type="text" name="size" class="form-control" />
+	    			<form:input id="newsize" type="text" path="size" class="form-control" />
 	    		</div>
-	    		<h4>Cost</h4>
+	    		<h4>Unit Cost</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newcost" type="text" name="cost" class="form-control" />
+	    			<form:input id="newucost" type="text" path="cost" class="form-control" />
+	    		</div>
+	    		<h4>Sales Cost</h4>
+	    		<div class="input-group" style="padding-bottom: 15px;">
+	    			<form:input id="newacost" type="text" path="price" class="form-control" />
 	    		</div>
 		    	<h4>Description</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		  			<textarea id="newdesc" class="form-control" name="desc" rows="4"></textarea>
+		  			<form:textarea id="newdesc" class="form-control" path="description" rows="4"></form:textarea>
 		    	</div>
-		    	<h4>Category</h4>
+		    	<h4>Category</h4><!-- needs to e casted back to table -->
 	    		<div class="input-group" style="padding-bottom: 15px;">
 	    			<input id="newcat" type="text" name="cat" class="form-control" />
 	    		</div>
-	    	</form>
+	    	</form:form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="submit" form="newForm" class="btn btn-default">Submit</button>
+	        <form:button type="submit" form="newForm" class="btn btn-default">Submit</form:button>
 	      </div>
 	    </div>
 	  </div>
