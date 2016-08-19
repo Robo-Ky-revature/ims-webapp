@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -64,21 +65,20 @@ public class MainController implements ApplicationContextAware{
 		return clients;
 	}
 	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
-	@ResponseBody
-	public void createNewProduct(/*HttpServletRequest req*/HttpServletRequest req){
+	public void createNewProduct(/*HttpServletRequest req*/ Product product){
 		log.info("starting product creation");
 		Set<Product> products = new HashSet<Product>();
-		Set<Category> catagories = new HashSet<Category>();
+//		Set<Category> catagories = new HashSet<Category>();
 		
-		Product product = (Product) context.getBean("product");
-		product.setProductName(req.getParameter("productName"));
-		product.setShortName(req.getParameter("shortName"));
-		product.setReorder(Integer.parseInt(req.getParameter("reorder")));log.error("reorder needs authentication");
-		product.setWeight(Double.parseDouble(req.getParameter("weight")));log.error("weight needs authentication");
-		product.setSize(req.getParameter("size"));
-		product.setCost(Double.parseDouble(req.getParameter("cost")));log.error("unit cost needs authentication");
-		product.setPrice(Double.parseDouble(req.getParameter("price")));log.error("sales cost needs authentication");
-		product.setDescription(req.getParameter("description"));
+		product = (Product) context.getBean("product");
+//		product.setProductName(req.getParameter("productName"));
+//		product.setShortName(req.getParameter("shortName"));
+//		product.setReorder(Integer.parseInt(req.getParameter("reorder")));log.error("reorder needs authentication");
+//		product.setWeight(Double.parseDouble(req.getParameter("weight")));log.error("weight needs authentication");
+//		product.setSize(req.getParameter("size"));
+//		product.setCost(Double.parseDouble(req.getParameter("cost")));log.error("unit cost needs authentication");
+//		product.setPrice(Double.parseDouble(req.getParameter("price")));log.error("sales cost needs authentication");
+//		product.setDescription(req.getParameter("description"));
 		products.add(product);
 		Category category = new Category(1, "test Case",products);
 		catagories.add(category);
@@ -88,7 +88,7 @@ public class MainController implements ApplicationContextAware{
 
 		product.setCatagories(catagories);
 		log.error("inserting new product " +product);
-
+		
 		bd.createProduct(product);
 		
 	}
