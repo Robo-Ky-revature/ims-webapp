@@ -3,15 +3,18 @@ package com.revature.controllers;
 import java.util.*;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.IMS.BusinessDelegate;
-import com.revature.beans.Product;
+
+import com.revature.beans.*;
 
 @Controller
 public class MainController {
@@ -30,7 +33,7 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="goClients.do", method=RequestMethod.GET)
-	public String clients() {
+	public String clients(HttpServletRequest request) {
 		return "clients";
 	}
 	
@@ -49,6 +52,13 @@ public class MainController {
 	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
 	public void createNewProduct(Product product){
 		bd.createProduct(product);
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="insertClient.do",
+			consumes="application/json")
+	@ResponseBody
+	public void insertClient(@RequestBody Client client) {
+		bd.insertClient(client);
 	}
 	
 }
