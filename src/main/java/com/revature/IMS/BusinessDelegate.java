@@ -25,6 +25,9 @@ public class BusinessDelegate {
 		dl.createRow(product);
 		
 	}
+	public List<Object> getAllProducts() {
+		return dl.selectAllRows(new Product());
+	}
 	
 	public void insertClient(Client client) {
 		dl.createRow(client);

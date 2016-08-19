@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
-    <meta name="author" content="Carter Smith">
+    <meta name="author" content="Carter Smith and Chris Olney">
     <link rel="icon" href="../../favicon.ico">
 
     <title>Products | Inventory Management</title>
@@ -85,7 +85,7 @@
 	        <h4 class="modal-title" id="myModalLabel">New Product</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form:form id="newForm" action = "createProduct.do" method="post">
+	      	<form:form id="newForm" action = "createProduct.do" method="post" commandName="proform">
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
 	    			<form:input id="newname" type="text" path="productName" class="form-control" />
@@ -126,7 +126,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <form:button type="submit" form="newForm" class="btn btn-default">Submit</form:button>
+	        <form:button type="submit" form="proform" class="btn btn-default" value="Submit"/>
 	      </div>
 	    </div>
 	  </div>
