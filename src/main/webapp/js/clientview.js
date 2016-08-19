@@ -60,7 +60,9 @@ $(document).ready(function(){
 	
 	function setButtons() {
 		$("#clients tr").each(function(){
-			var formVals = {upname: $(this).find($(".tdname")).html(),
+			var formVals = {
+					upid: $(this).find($(".tdid")).html(),
+					upname: $(this).find($(".tdname")).html(),
 					upemail: $(this).find($(".tdemail")).html(),
 					upl1: $(this).find($(".tdadd")).find($("#l1")).html(),
 					upl2: $(this).find($(".tdadd")).find($("#l2")).html(),
@@ -79,6 +81,11 @@ $(document).ready(function(){
 				$("#upaddzip").val(formVals.upzp);
 				$("#upphone").val(formVals.upphone);
 				$("#upfax").val(formVals.upfax);
+			})
+			
+			$(this).find($(".tdacts")).find($(".delete")).click(function(){
+				$("#delname").html(formVals.upname);
+				$("#delid").val(formVals.upid);
 			})
 		})
 	}

@@ -146,11 +146,14 @@
 	        <h4 class="modal-title" id="myModalLabel">WARNING</h4>
 	      </div>
 	      <div class="modal-body">
-	      	This will delete this client from the database. Are you sure?
+	      	<form id="delForm" action="deleteClient.do" method="post">
+	      		<input type="hidden" id="delid" name="clientId" />
+	      		This will delete <div id="delname"></div> from the database. Are you sure?
+	      	</form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-	        <button type="submit" form="deleteForm" class="btn btn-default" data-dismiss="modal">Confirm</button>
+	        <button type="submit" form="delForm" class="btn btn-default">Confirm</button>
 	      </div>
 	    </div>
 	  </div>

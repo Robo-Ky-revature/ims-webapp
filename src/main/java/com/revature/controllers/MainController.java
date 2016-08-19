@@ -114,6 +114,12 @@ public class MainController implements ApplicationContextAware{
 		client.setContactName("Grace");
 		bd.insertClient(client);
 	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="deleteClient.do")
+	@ResponseBody
+	public void deleteClient(HttpServletRequest request) {
+		bd.deleteClient(Integer.parseInt(request.getParameter("clientId")));
+	}
 
 	@Override
 	public void setApplicationContext(ApplicationContext context) throws BeansException {

@@ -1,5 +1,6 @@
 package com.revature.IMS;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -44,6 +45,10 @@ public class BusinessDelegate {
 	
 	public void insertClient(Client client) {
 		dl.createRow(client);
+	}
+	
+	public void deleteClient(Serializable id) {
+		dl.delete(new Client(), id);
 	}
 	
 }
