@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
@@ -20,12 +21,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.IMS.BusinessDelegate;
 import com.revature.beans.Category;
-import com.revature.beans.Client;
 import com.revature.beans.Product;
 
 @Controller
 public class MainController implements ApplicationContextAware{
+	
 	private static Logger log = Logger.getRootLogger();
+	
+	
+	
 	@Autowired
 	private ApplicationContext context;
 	
@@ -37,7 +41,7 @@ public class MainController implements ApplicationContextAware{
 	
 	@RequestMapping(value="goHome.do", method=RequestMethod.GET)
 	public String home() {
-		return "home";
+		return "home"; 
 	}
 	
 	@RequestMapping(value="goClients.do", method=RequestMethod.GET)
@@ -59,24 +63,25 @@ public class MainController implements ApplicationContextAware{
 	}
 	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
 	@ResponseBody
-	public void createNewProduct(HttpServletRequest req){
+	public void createNewProduct(/*HttpServletRequest req*/@RequestBody Product product){
+		log.info("starting product creation");
 		Set<Product> products = new HashSet<Product>();
 		Set<Category> catagories = new HashSet<Category>();
 		
-		Product product = (Product) context.getBean("product");
-		product.setProductName(req.getParameter("productName"));
-		product.setShortName(req.getParameter("shortName"));
-		product.setReorder(Integer.parseInt(req.getParameter("reorder")));log.error("reorder needs authentication");
-		product.setWeight(Double.parseDouble(req.getParameter("weight")));log.error("weight needs authentication");
-		product.setSize(req.getParameter("size"));
-		product.setCost(Double.parseDouble(req.getParameter("cost")));log.error("unit cost needs authentication");
-		product.setPrice(Double.parseDouble(req.getParameter("price")));log.error("sales cost needs authentication");
-		product.setDescription(req.getParameter("description"));
-		products.add(product);
+//		Product product = (Product) context.getBean("product");
+//		product.setProductName(req.getParameter("productName"));
+//		product.setShortName(req.getParameter("shortName"));
+//		product.setReorder(Integer.parseInt(req.getParameter("reorder")));log.error("reorder needs authentication");
+//		product.setWeight(Double.parseDouble(req.getParameter("weight")));log.error("weight needs authentication");
+//		product.setSize(req.getParameter("size"));
+//		product.setCost(Double.parseDouble(req.getParameter("cost")));log.error("unit cost needs authentication");
+//		product.setPrice(Double.parseDouble(req.getParameter("price")));log.error("sales cost needs authentication");
+//		product.setDescription(req.getParameter("description"));
+//		products.add(product);
 		Category category = new Category(1, "test Case",products);
 		catagories.add(category);
-		product.setCatagories(catagories);
-		log.debug("inserting new product " +product);
+//		product.setCatagories(catagories);
+		log.info("inserting new product " +product);
 		bd.createProduct(product);
 		
 	}

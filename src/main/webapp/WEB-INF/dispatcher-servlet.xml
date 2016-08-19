@@ -19,4 +19,13 @@
 <!-- 		<bean name="dataLayer" class="com.revature.database.DataLayer"> -->
 <!-- 		<property name="DataLayer" ref="dao"></property> -->
 <!-- 		</bean> -->
+
+<bean name="address" class="com.revature.beans.Address" scope="prototype" />
+<bean name="category" class="com.revature.beans.Category" scope="prototype" />
+<bean name="client" class="com.revature.beans.Client" scope="prototype" />
+<bean name="clientType" class="com.revature.beans.ClientType" scope="prototype" />
+<bean name="POLine" class="com.revature.beans.POLine" scope="prototype" />
+<bean name="product" class="com.revature.beans.Product" scope="prototype" />
+<bean name="purchaseOrder" class="com.revature.beans.PurchaseOrder" scope="prototype" />
+<bean name="state" class="com.revature.beans.State" scope="prototype" />
 </beans>

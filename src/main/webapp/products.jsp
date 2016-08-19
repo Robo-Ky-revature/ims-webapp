@@ -85,44 +85,46 @@
 	        <h4 class="modal-title" id="myModalLabel">New Product</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form id="newForm" action = "createProduct.do" method="post" >
+	      	<form:form id="newForm" action = "createProduct.do" method="post" >
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newname" type="text" name="productName" class="form-control" />
+	    			<form:input id="newname" type="text" path="productName" class="form-control" />
 	    		</div>
 	    		<h4>Shorthand</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newshort" type="text" name="shortName" class="form-control" />
+	    			<form:input id="newshort" type="text" path="shortName" class="form-control" />
 	    		</div>
 	    		<h4>Initial Quantity</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newquan" type="text" name="reorder" class="form-control" />
+	    			<form:input id="newquan" type="text" path="reorder" class="form-control" />
 	    		</div>
 	    		<h4>Weight</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newwei" type="text" name="weight" class="form-control" />
+	    			<form:input id="newwei" type="text" path="weight" class="form-control" />
 	    		</div>
 	    		<h4>Container Type</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newsize" type="text" name="size" class="form-control" />
+	    			<form:input id="newsize" type="text" path="size" class="form-control" />
 	    		</div>
 	    		<h4>Unit Cost</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newucost" type="text" name="cost" class="form-control" />
+	    			<form:input id="newucost" type="text" path="cost" class="form-control" />
 	    		</div>
 	    		<h4>Sales Cost</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newacost" type="text" name="price" class="form-control" />
+	    			<form:input id="newacost" type="text" path="price" class="form-control" />
 	    		</div>
 		    	<h4>Description</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		  			<textarea id="newdesc" class="form-control" name="description" rows="4"></textarea>
+		  			<form:textarea id="newdesc" class="form-control" path="description" rows="4"></form:textarea>
 		    	</div>
 		    	<h4>Category</h4><!-- needs to e casted back to table -->
 	    		<div class="input-group" style="padding-bottom: 15px;">
 	    			<input id="newcat" type="text" name="cat" class="form-control" />
 	    		</div>
-	    	</form>
+	    		<input type="submit" form="newForm" class="btn btn-default" value="Submit"/>
+	    		
+	    	</form:form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
