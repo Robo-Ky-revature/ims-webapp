@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	var statedd = document.createElement("select");
-	statedd.name = "state";
+	var stateddc = document.createElement("select");
+	statedd.name = "state"; stateddc.name = "state";
 	
 	$.ajax({
 		headers: {          
@@ -11,12 +12,13 @@ $(document).ready(function(){
 		success: function(resp){
 			$.each(resp, function(i, item) {
 				var op = document.createElement("option");
-				op.value = item.stateId;
-				op.text = item.abbreviation;
-				statedd.appendChild(op);
+				var opc = document.createElement("option");
+				op.value = item.stateId; opc.value = item.stateId;
+				op.text = item.abbreviation; opc.text = item.abbreviation;
+				statedd.appendChild(op); stateddc.appendChild(opc);
 			})
 			$("#newaddstate").append(statedd);
-			$("#upaddstate").append(statedd);
+			$("#upaddstate").append(stateddc);
 		}
 	});
 	

@@ -66,12 +66,10 @@ public class MainController{
 		return states;
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="insertClient.do",
-			consumes="application/json")
+	@RequestMapping(method=RequestMethod.POST, value="insertClient.do")
 	@ResponseBody
-	public void insertClient(@RequestBody Client client) {
-		System.out.println(client.getAddress().getState().getStateId());
-		//bd.insertClient(client);
+	public void insertClient(HttpServletRequest request) {
+		System.out.println(request.getAttribute("name"));
 	}
 
 	
