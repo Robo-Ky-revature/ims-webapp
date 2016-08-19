@@ -13,5 +13,10 @@
 		<property name="prefix" value=""></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	
+<!-- 		<bean name="dao" class="com.revature.database.DAO"> -->
+<!-- 		<property name="DAO" ref="dao"></property> -->
+<!-- 		</bean> -->
+<!-- 		<bean name="dataLayer" class="com.revature.database.DataLayer"> -->
+<!-- 		<property name="DataLayer" ref="dao"></property> -->
+<!-- 		</bean> -->
 </beans>
