@@ -1,28 +1,33 @@
 package com.revature.controllers;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.ServletContextAware;
 
 import com.revature.IMS.BusinessDelegate;
+import com.revature.beans.Category;
 import com.revature.beans.Client;
 import com.revature.beans.Product;
 
 @Controller
-public class MainController{
-	
+public class MainController implements ApplicationContextAware{
+	private static Logger log = Logger.getRootLogger();
 	@Autowired
-	private ServletContext context;
+	private ApplicationContext context;
 	
 	private BusinessDelegate bd = new BusinessDelegate();
 	
@@ -51,10 +56,28 @@ public class MainController{
 		clients = bd.getAllClients();
 		return clients;
 	}
-	@RequestMapping(value="createProduct.do", method=RequestMethod.POST, consumes="application/json")
+	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
 	@ResponseBody
-	public void createNewProduct(@RequestBody Product product){
+	public void createNewProduct(HttpServletRequest req){
+		Set<Product> products = new HashSet<Product>();
+		Set<Category> catagories = new HashSet<Category>();
+		
+		Product product = (Product) context.getBean("product");
+		product.setProductName(req.getParameter("productName"));
+		product.setShortName(req.getParameter("shortName"));
+		product.setReorder(Integer.parseInt(req.getParameter("reorder")));log.error("reorder needs authentication");
+		product.setWeight(Double.parseDouble(req.getParameter("weight")));log.error("weight needs authentication");
+		product.setSize(req.getParameter("size"));
+		product.setCost(Double.parseDouble(req.getParameter("cost")));log.error("unit cost needs authentication");
+		product.setPrice(Double.parseDouble(req.getParameter("price")));log.error("sales cost needs authentication");
+		product.setDescription(req.getParameter("description"));
+		products.add(product);
+		Category category = new Category(1, "test Case",products);
+		catagories.add(category);
+		product.setCatagories(catagories);
+		log.debug("inserting new product " +product);
 		bd.createProduct(product);
+		
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="insertClient.do",
@@ -62,6 +85,13 @@ public class MainController{
 	@ResponseBody
 	public void insertClient(@RequestBody Client client) {
 		bd.insertClient(client);
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext context) throws BeansException {
+		
+		this.context=context;
+		
 	}
 
 	
