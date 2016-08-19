@@ -57,7 +57,7 @@
 	        <h4 class="modal-title" id="myModalLabel">New Client</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form id="newForm" action = "#" method="post">
+	      	<form id="newForm" action = "insertClient.do" method="post">
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
 	    			<input id="newname" type="text" name="name" class="form-control" />
@@ -76,7 +76,7 @@
 		  			<input id="newaddline1" type="text" name="streetAddress1" class="form-control" placeholder="Street address line 1"/>
 		  			<input id="newaddline2" type="text" name="streetAddress2" class="form-control" placeholder="Street address line 2"/>
 		  			<input id="newaddcity" type="text" name="city" class="form-control" placeholder="City" />
-		  			<input id="newaddstate" type="text" name="state" class="form-control" placeholder="AL" />
+		  			<div id="newaddstate">State </div>
 		  			<input id="newaddzip" type="text" name="zip" class="form-control" placeholder="Zip" />
 		    	</div>
 		    	<h4>Phone</h4>
@@ -118,7 +118,7 @@
 		  			<input id="upaddline1" type="text" name="streetAddress1" class="form-control" placeholder="Street address line 1"/>
 		  			<input id="upaddline2" type="text" name="streetAddress2" class="form-control" placeholder="Street address line 2"/>
 		  			<input id="upaddcity" type="text" name="city" class="form-control" placeholder="City" />
-		  			<input id="upaddstate" type="text" name="state" class="form-control" placeholder="State (abbreviation)" />
+		  			<div id="upaddstate">State </div>
 		  			<input id="upaddzip" type="text" name="zip" class="form-control" placeholder="Zip" />
 		    	</div>
 		    	<h4>Phone</h4>
