@@ -33,6 +33,7 @@ public class MainController implements ApplicationContextAware{
 	
 	private List<Object> clients = new Vector<Object>();
 	private List<Object> products = new Vector<Object>();
+	private List<Object> states = new Vector<Object>();
 	
 	@RequestMapping(value="goHome.do", method=RequestMethod.GET)
 	public String home() {
@@ -80,11 +81,20 @@ public class MainController implements ApplicationContextAware{
 		
 	}
 	
+	@RequestMapping(value="getAllStates.do", method=RequestMethod.GET,
+			produces="application/json")
+	@ResponseBody
+	public List<Object> getAllStates() {
+		states = bd.getAllStates();
+		return states;
+	}
+	
 	@RequestMapping(method=RequestMethod.POST, value="insertClient.do",
 			consumes="application/json")
 	@ResponseBody
 	public void insertClient(@RequestBody Client client) {
-		bd.insertClient(client);
+		System.out.println(client.getAddress().getState().getStateId());
+		//bd.insertClient(client);
 	}
 
 	@Override
