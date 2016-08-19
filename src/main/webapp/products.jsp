@@ -85,7 +85,7 @@
 	        <h4 class="modal-title" id="myModalLabel">New Product</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form:form cssStyle="newForm" action = "createProduct.do" commandName="product" method="POST" >
+	      	<form:form cssStyle="newForm" action = "createProduct.do" commandName="Product" method="POST" >
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
 	    			<form:input cssStyle="newname" type="text" path="productName" cssClass="form-control" />

@@ -68,9 +68,9 @@ public class MainController implements ApplicationContextAware{
 	public void createNewProduct(/*HttpServletRequest req*/ Product product){
 		log.info("starting product creation");
 		Set<Product> products = new HashSet<Product>();
-//		Set<Category> catagories = new HashSet<Category>();
+		Set<Category> catagories = new HashSet<Category>();
 		
-		product = (Product) context.getBean("product");
+//		product = (Product) context.getBean("product");
 //		product.setProductName(req.getParameter("productName"));
 //		product.setShortName(req.getParameter("shortName"));
 //		product.setReorder(Integer.parseInt(req.getParameter("reorder")));log.error("reorder needs authentication");
