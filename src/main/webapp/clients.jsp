@@ -104,7 +104,9 @@
 	        <h4 class="modal-title" id="myModalLabel">Update Client</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form id="updateForm" action = "#" method="post">
+	      	<form id="updateForm" action = "updateClient.do" method="post">
+	      		<input type="hidden" name="clientId">
+	      		<input type="hidden" name="type">
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
 	    			<input id="upname" type="text" name="name" class="form-control" />

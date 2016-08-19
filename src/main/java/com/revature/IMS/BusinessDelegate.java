@@ -37,6 +37,10 @@ public class BusinessDelegate {
 	public void insertAddress(Address address) {
 		dl.createRow(address);
 	}
+	
+	public void updateAddress(Address address) {
+		dl.updateRow(address);
+	}
 
 	public void createProduct(Product product) {
 		dl.createRow(product);
@@ -45,6 +49,10 @@ public class BusinessDelegate {
 	
 	public void insertClient(Client client) {
 		dl.createRow(client);
+	}
+	
+	public void updateClient(Client client) {
+		dl.updateRow(client);
 	}
 	
 	public void deleteClient(Serializable id) {

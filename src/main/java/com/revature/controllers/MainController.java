@@ -124,6 +124,30 @@ public class MainController implements ApplicationContextAware{
 		bd.insertClient(client);
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="updateClient.do")
+	@ResponseBody
+	public void updateClient(HttpServletRequest request) {
+		//ClientType type = (ClientType) bd.selectType(request.getParameter("type")).get(0);
+		State st = (State) bd.selectState(request.getParameter("state")).get(0);
+		Address add = new Address();
+		add.setStreetAddress1(request.getParameter("streetAddress1"));
+		add.setStreetAddress2(request.getParameter("streetAddress2"));
+		add.setCity(request.getParameter("city"));
+		add.setState(st);
+		add.setZip(request.getParameter("zip"));
+		bd.updateAddress(add);
+		Client client = new Client();
+		client.setAddress(add);
+		//client.setType(type);
+		client.setClientId(Integer.parseInt(request.getParameter("clientId")));
+		client.setName(request.getParameter("name"));
+		client.setEmail(request.getParameter("email"));
+		client.setPhone(request.getParameter("phone"));
+		client.setFax(request.getParameter("fax"));
+		client.setContactName("Grace");
+		bd.updateClient(client);
+	}
+	
 	@RequestMapping(method=RequestMethod.POST, value="deleteClient.do")
 	@ResponseBody
 	public void deleteClient(HttpServletRequest request) {
