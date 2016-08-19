@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.IMS.BusinessDelegate;
+import com.revature.beans.Address;
 import com.revature.beans.Category;
 import com.revature.beans.Client;
+import com.revature.beans.ClientType;
 import com.revature.beans.Product;
+import com.revature.beans.State;
 
 @Controller
 public class MainController implements ApplicationContextAware{
@@ -76,7 +79,7 @@ public class MainController implements ApplicationContextAware{
 		Category category = new Category(1, "test Case",products);
 		catagories.add(category);
 		product.setCatagories(catagories);
-		log.debug("inserting new product " +product);
+		log.error("inserting new product " +product);
 		bd.createProduct(product);
 		
 	}
@@ -92,7 +95,24 @@ public class MainController implements ApplicationContextAware{
 	@RequestMapping(method=RequestMethod.POST, value="insertClient.do")
 	@ResponseBody
 	public void insertClient(HttpServletRequest request) {
-		System.out.println(request.getAttribute("name"));
+		ClientType type = (ClientType) bd.selectType(request.getParameter("type")).get(0);
+		State st = (State) bd.selectState(request.getParameter("state")).get(0);
+		Address add = new Address();
+		add.setStreetAddress1(request.getParameter("streetAddress1"));
+		add.setStreetAddress2(request.getParameter("streetAddress2"));
+		add.setCity(request.getParameter("city"));
+		add.setState(st);
+		add.setZip(request.getParameter("zip"));
+		bd.insertAddress(add);
+		Client client = new Client();
+		client.setAddress(add);
+		client.setType(type);
+		client.setName(request.getParameter("name"));
+		client.setEmail(request.getParameter("email"));
+		client.setPhone(request.getParameter("phone"));
+		client.setFax(request.getParameter("fax"));
+		client.setContactName("Grace");
+		bd.insertClient(client);
 	}
 
 	@Override
