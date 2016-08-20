@@ -58,5 +58,9 @@ public class BusinessDelegate {
 	public void deleteClient(Serializable id) {
 		dl.delete(new Client(), id);
 	}
+
+	public Object getAllCategories() {
+		return dl.selectAllRows(new Category());
+	}
 	
 }
