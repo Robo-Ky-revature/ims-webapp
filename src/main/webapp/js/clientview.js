@@ -46,9 +46,9 @@ $(document).ready(function(){
 					+"</td><td class='tdname'>"+item.name
 					+"</td><td class='tdemail'>"+item.email
 					+"</td><td class='tdtype'>"+item.type.type
-					+"</td><td class='tdadd'><p id='l1'>"+item.address.streetAddress1+"</p><p id='l2'>"+item.address.streetAddress2
-						+"</p><p id='ct'>"+item.address.city+"</p><p id='st'>"+item.address.state.abbreviation+"</p><p id='zp'>"+item.address.zip
-					+"</p></td><td class='tdphone'>"+item.phone
+					+"</td><td class='tdadd'><div id='l1'>"+item.address.streetAddress1+"</div><div id='l2'>"+item.address.streetAddress2
+						+"</div><div id='ct'>"+item.address.city+"</div><div id='st'>"+item.address.state.abbreviation+"</div><div id='zp'>"+item.address.zip
+					+"</div></td><td class='tdphone'>"+item.phone
 					+"</td><td class='tdfax'>"+item.fax
 					+"</td><td class='tdacts'><button type='button' class='btn btn-default btn-sm update' data-toggle='modal' data-target='#upModal'>Update</button> "
 						+"<button type='button' class='btn btn-default btn-sm delete' data-toggle='modal' data-target='#delModal'>Delete</button>"

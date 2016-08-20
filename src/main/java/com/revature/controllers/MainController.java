@@ -123,7 +123,7 @@ public class MainController implements ApplicationContextAware{
 	
 	@RequestMapping(method=RequestMethod.POST, value="insertClient.do")
 	@ResponseBody
-	public void insertClient(HttpServletRequest request) {
+	public String insertClient(HttpServletRequest request) {
 		ClientType type = (ClientType) bd.selectType(request.getParameter("type")).get(0);
 		State st = (State) bd.selectState(request.getParameter("state")).get(0);
 		Address add = new Address();
@@ -142,11 +142,12 @@ public class MainController implements ApplicationContextAware{
 		client.setFax(request.getParameter("fax"));
 		client.setContactName("Grace");
 		bd.insertClient(client);
+		return "clients";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="updateClient.do")
 	@ResponseBody
-	public void updateClient(HttpServletRequest request) {
+	public String updateClient(HttpServletRequest request) {
 		//ClientType type = (ClientType) bd.selectType(request.getParameter("type")).get(0);
 		State st = (State) bd.selectState(request.getParameter("state")).get(0);
 		Address add = new Address();
@@ -166,12 +167,14 @@ public class MainController implements ApplicationContextAware{
 		client.setFax(request.getParameter("fax"));
 		client.setContactName("Grace");
 		bd.updateClient(client);
+		return "clients";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="deleteClient.do")
 	@ResponseBody
-	public void deleteClient(HttpServletRequest request) {
+	public String deleteClient(HttpServletRequest request) {
 		bd.deleteClient(Integer.parseInt(request.getParameter("clientId")));
+		return "clients";
 	}
 
 	@Override
