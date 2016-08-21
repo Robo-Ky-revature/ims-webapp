@@ -117,7 +117,7 @@ public class MainController implements ApplicationContextAware{
 			produces="application/json")
 	@ResponseBody
 	public List<Object> getAllCategories() {
-		catagories = bd.getAllCategories();
+		catagories = (List<Object>) bd.getAllCategories();
 		return catagories;
 	}
 	
