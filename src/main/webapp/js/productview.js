@@ -35,7 +35,8 @@ $(document).ready(function(){
 					+"<th>Size</th>"
 					+"<th>Unit Cost</th>"
 					+"<th>Description</th>"
-					+"<th>Category</th>");
+					+"<th>Category</th>" 
+					+"<th>Actions</th>");
 			$.each(resp, function(i, item){
 				console.log(item);
 				$("#products").append(
@@ -43,9 +44,10 @@ $(document).ready(function(){
 					+"</td><td class='tdname'>"+item.productName
 					+"</td><td class='tdwei'>"+item.weight
 					+"</td><td class='tdsize'>"+item.size
-					+"</div></td><td class='tdcost'>"+item.cost
-					+"</td><td class='tdcat'>"+item.description
-					+"</td><button type='button' class='btn btn-default btn-sm update'>Update</button>"
+					+"</td><td class='tdcost'>"+item.cost
+					+"</td><td class='tddesc'>"+item.description
+					+"</td><td class='tdcat'>" + item.price
+					+"</td><td><button type='button' class='btn btn-default btn-sm update'>Update</button>"
 					+"<button type='button' class='btn btn-default btn-sm delete'>Delete</button>"
 					+"</td></tr>");
 			});

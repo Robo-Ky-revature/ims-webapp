@@ -77,7 +77,7 @@ public class MainController implements ApplicationContextAware{
 		return products;
 	}
 	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
-	public void createNewProduct(@ModelAttribute @Valid Product product,BindingResult bindingResult, HttpServletRequest req,
+	public String createNewProduct(@ModelAttribute @Valid Product product,BindingResult bindingResult, HttpServletRequest req,
 			HttpServletResponse resp){
 //		if (bindingResult.hasErrors()){
 //			return new ModelAndView("home");
@@ -108,7 +108,7 @@ public class MainController implements ApplicationContextAware{
 		//mv.addObject("success","Product added");
 		bd.createProduct(product);
 	//	return mv;
-		
+		return"products";
 		
 		
 	}
