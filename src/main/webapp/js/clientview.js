@@ -7,7 +7,7 @@ $(document).ready(function(){
 		headers: {          
 	   		"Accept" : "application/json"
 	   	}, 
-		url: "http://localhost:9001/IMS/getAllStates.do",
+		url: "http://localhost:7001/IMS/getAllStates.do",
 		method: "GET",
 		success: function(resp){
 			$.each(resp, function(i, item) {
@@ -26,7 +26,7 @@ $(document).ready(function(){
 		headers: {          
 	   		"Accept" : "application/json"
 	   	}, 
-		url: "http://localhost:9001/IMS/getAllClients.do",
+		url: "http://localhost:7001/IMS/getAllClients.do",
 		method: "GET",
 		success: function(resp){
 			$("#clients").html("<tr id='header'>"

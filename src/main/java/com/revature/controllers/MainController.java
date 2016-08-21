@@ -69,6 +69,13 @@ public class MainController implements ApplicationContextAware{
 		clients = bd.getAllClients();
 		return clients;
 	}
+	@RequestMapping(value="getAllProducts.do", method=RequestMethod.GET,
+			produces="application/json")
+	@ResponseBody
+	public List<Object> getAllProducts() {
+		products = bd.getAllProducts();
+		return products;
+	}
 	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
 	public void createNewProduct(@ModelAttribute @Valid Product product,BindingResult bindingResult, HttpServletRequest req,
 			HttpServletResponse resp){

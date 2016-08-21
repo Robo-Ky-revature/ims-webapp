@@ -46,32 +46,7 @@
 							<th>Category</th>
 							<th>Actions</th>
 						</tr>
-						<tr id="thisrow">
-							<td class="tdupc">1</td>
-							<td class="tdname">Magic Core Set 2016</td>
-							<td class="tdwei">0.2</td>
-							<td class="tdsize">15x6x2</td>
-							<td class="tdcost">20.0</td>
-							<td class="tddesc">MTG</td>
-							<td class="tdcat">CCG</td>
-							<td class="tdacts">
-								<button type="button" class="btn btn-default btn-sm update">Update</button>
-								<button type="button" class="btn btn-default btn-sm delete">Delete</button>
-							</td>
-						</tr>
-						<tr id="thatrow">
-							<td class="tdupc">2</td>
-							<td class="tdname">Settlers of Catan</td>
-							<td class="tdwei">2.0</td>
-							<td class="tdsize">15x15x4</td>
-							<td class="tdcost">30.0</td>
-							<td class="tddesc">settlers</td>
-							<td class="tdcat">Board</td>
-							<td class="tdacts">
-								<button type="button" class="btn btn-default btn-sm update">Update</button>
-								<button type="button" class="btn btn-default btn-sm delete">Delete</button>
-							</td>
-						</tr>
+						
 					</table>
 				</div>
 			</div>
@@ -88,39 +63,39 @@
 	      	<form id="newForm" action = "createProduct.do" commandName="Product" method="POST" >
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newname" type="text" path="productName" class="form-control" />
+	    			<input id="newname" type="text" name="productName" class="form-control" />
 	    		</div>
 	    		<h4>Shorthand</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newshort" type="text" path="shortName" class="form-control" />
+	    			<input id="newshort" type="text" name="shortName" class="form-control" />
 	    		</div>
 	    		<h4>Initial Quantity</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newquan" type="text" path="reorder" class="form-control" />
+	    			<input id="newquan" type="text" name="reorder" class="form-control" />
 	    		</div>
 	    		<h4>Weight</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newwei" type="text" path="weight" class="form-control" />
+	    			<input id="newwei" type="text" name="weight" class="form-control" />
 	    		</div>
 	    		<h4>Container Type</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newsize" type="text" path="size" class="form-control" />
+	    			<input id="newsize" type="text" name="size" class="form-control" />
 	    		</div>
 	    		<h4>Unit Cost</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newucost" type="text" path="cost" class="form-control" />
+	    			<input id="newucost" type="text" name="cost" class="form-control" />
 	    		</div>
 	    		<h4>Sales Cost</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newacost" type="text" path="price" class="form-control" />
+	    			<input id="newacost" type="text" name="price" class="form-control" />
 	    		</div>
 		    	<h4>Description</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		  			<textarea id="newdesc" class="form-control" path="description" rows="4"></textarea>
+		  			<textarea id="newdesc" class="form-control" name="description" rows="4"></textarea>
 		    	</div>
 		    	<h4>Category</h4><!-- needs to e casted back to table -->
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newcat" type="text" name="cat" class="form-control" />
+	    			<div id="newcat"></div>
 	    		</div>
 	    		<input type="submit" form="newForm" class="btn btn-default" value="Submit"/>
 	    		
