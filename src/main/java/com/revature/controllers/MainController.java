@@ -182,6 +182,12 @@ public class MainController implements ApplicationContextAware{
 		bd.deleteClient(Integer.parseInt(request.getParameter("clientId")));
 		return "clients";
 	}
+	@RequestMapping(method=RequestMethod.POST, value="deleteProduct.do")
+	@ResponseBody
+	public String deleteProduct(HttpServletRequest request) {
+		bd.deleteProduct(Integer.parseInt(request.getParameter("upc")));
+		return "products";
+	}
 
 	@Override
 	public void setApplicationContext(ApplicationContext context) throws BeansException {

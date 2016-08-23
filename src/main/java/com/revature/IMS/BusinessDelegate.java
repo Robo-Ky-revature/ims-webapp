@@ -62,5 +62,10 @@ public class BusinessDelegate {
 	public List<Object> getAllCategories() {
 		return dl.selectAllRows(new Category());
 	}
+
+	public void deleteProduct(Serializable id) {
+		dl.delete(new Product(), id);
+		
+	}
 	
 }

@@ -59,7 +59,9 @@ $(document).ready(function(){
 		$(".update").attr("data-target","#upModal");
 		$(".delete").attr("data-toggle","modal");
 		$(".delete").attr("data-target","#delModal");
-		var formVals = {upname: $(this).find($(".tdname")).html(),
+		var formVals = {
+				upupc: $(this).find($(".tdupc").html),
+				upname: $(this).find($(".tdname")).html(),
 				upwei: $(this).find($(".tdwei")).html(),
 				upsize: $(this).find($(".tdsize")).html(),
 				upcost: $(this).find($(".tdcost")).html(),
@@ -74,6 +76,10 @@ $(document).ready(function(){
 			$("#updesc").val(formVals.updesc);
 			$("#upcat").val(formVals.upcat);
 		})
+		$(this).find($(".tdacts")).find($(".delete")).click(function(){
+				$("#delname").html(formVals.upname);
+				$("#delid").val(formVals.upc);
+			})
 	})
 	}
 })
