@@ -105,8 +105,8 @@
 	      </div>
 	      <div class="modal-body">
 	      	<form id="updateForm" action = "updateClient.do" method="post">
-	      		<input type="hidden" name="clientId">
-	      		<input type="hidden" name="type">
+	      		<input id="upid" type="hidden" name="clientId">
+	      		<input id="uptype" type="hidden" name="type">
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
 	    			<input id="upname" type="text" name="name" class="form-control" />
@@ -117,6 +117,7 @@
 	    		</div>
 		    	<h4>Address</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
+		    		<input id="upaid" type="hidden" name="addressId" />
 		  			<input id="upaddline1" type="text" name="streetAddress1" class="form-control" placeholder="Street address line 1"/>
 		  			<input id="upaddline2" type="text" name="streetAddress2" class="form-control" placeholder="Street address line 2"/>
 		  			<input id="upaddcity" type="text" name="city" class="form-control" placeholder="City" />
