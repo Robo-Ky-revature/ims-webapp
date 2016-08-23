@@ -1,24 +1,22 @@
 $(document).ready(function(){
-	var categorydd = document.createElement("select");
-	var categoryddc = document.createElement("select");
-	categorydd.name = "state"; categoryddc.name = "state";
+	var categorysel = document.createElement("select");
+
+	
 	
 	$.ajax({
 		headers: {          
 	   		"Accept" : "application/json"
 	   	}, 
-		url: "http://localhost:7001/IMS/getCategories.do",
+		url: "http://localhost:7001/IMS/getAllCategories.do",
 		method: "GET",
 		success: function(resp){
 			$.each(resp, function(i, item) {
 				var op = document.createElement("option");
-				var opc = document.createElement("option");
-				op.value = item.categorydd; opc.value = item.catagoryId;
-				op.text = item.description; opc.text = item.description;
-				categorydd.appendChild(op); catagoryddc.appendChild(opc);
+				op.value=item.categoryId;
+				op.text = item.description;			
+				categorysel.appendChild(op);
 			})
-			$("#newcat").append(statedd);
-			$("#newcat").append(stateddc);
+			$('#newcat').append(categorysel);
 		}
 	});
 	$.ajax({

@@ -59,7 +59,7 @@ public class BusinessDelegate {
 		dl.delete(new Client(), id);
 	}
 
-	public Object getAllCategories() {
+	public List<Object> getAllCategories() {
 		return dl.selectAllRows(new Category());
 	}
 	

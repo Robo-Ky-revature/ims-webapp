@@ -95,7 +95,7 @@
 		    	</div>
 		    	<h4>Category</h4><!-- needs to e casted back to table -->
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<div id="newcat"></div>
+	    			<div id="newcat">category</div>
 	    		</div>
 	    		<input type="submit" form="newForm" class="btn btn-default" value="Submit"/>
 	    		

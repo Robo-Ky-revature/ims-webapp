@@ -77,17 +77,16 @@ public class MainController implements ApplicationContextAware{
 		return products;
 	}
 	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
-	public String createNewProduct(@ModelAttribute @Valid Product product,BindingResult bindingResult, HttpServletRequest req,
-			HttpServletResponse resp){
+	public String createNewProduct(HttpServletRequest req){
 //		if (bindingResult.hasErrors()){
 //			return new ModelAndView("home");
 //		}
 		//BindingResult bindingResult=BindingResult
 		log.info("starting product creation");
-		Set<Product> products = new HashSet<Product>();
+		//Set<Product> products = new HashSet<Product>();
 		Set<Category> catagories = new HashSet<Category>();
-		
-		product = (Product) context.getBean("product");
+		Product product = new Product();
+		//product = (Product) context.getBean("product");
 		product.setProductName(req.getParameter("productName"));
 		product.setShortName(req.getParameter("shortName"));
 		product.setReorder(Integer.parseInt(req.getParameter("reorder")));log.error("reorder needs authentication");
@@ -96,10 +95,10 @@ public class MainController implements ApplicationContextAware{
 		product.setCost(Double.parseDouble(req.getParameter("cost")));log.error("unit cost needs authentication");
 		product.setPrice(Double.parseDouble(req.getParameter("price")));log.error("sales cost needs authentication");
 		product.setDescription(req.getParameter("description"));
-		products.add(product);
-		Category category = new Category(1, "test Case",products);
+		//products.add(product);
+		Category category = new Category();
+		category.setDescription("test");
 		catagories.add(category);
-
 		product.setCatagories(catagories);
 		log.info("inserting new product " +product);
 		//ModelAndView mv = new ModelAndView();
@@ -120,11 +119,11 @@ public class MainController implements ApplicationContextAware{
 		states = bd.getAllStates();
 		return states;
 	}
-	@RequestMapping(value="getCategories.do", method=RequestMethod.GET,
+	@RequestMapping(value="getAllCategories.do", method=RequestMethod.GET,
 			produces="application/json")
 	@ResponseBody
 	public List<Object> getAllCategories() {
-		catagories = (List<Object>) bd.getAllCategories();
+		catagories =  bd.getAllCategories();
 		return catagories;
 	}
 	
