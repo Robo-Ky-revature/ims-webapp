@@ -21,17 +21,21 @@ public class BusinessDelegate {
 	public List<Object> selectType(String clientId) {
 		return dl.selectRestricted(new ClientType(), "clientId", Integer.parseInt(clientId));
 	}
+	
+	public List<Object> selectClient(String clientId) {
+		return dl.selectRestricted(new Client(), "clientId", Integer.parseInt(clientId));
+	}
 
 	public List<Object> getAllProducts() {
-		return dl.selectAllRows(new Product());
+		return dl.selectAllRows(new Product(), "productName");
 	}
 	
 	public List<Object> getAllStates() {
-		return dl.selectAllRows(new State());
+		return dl.selectAllRows(new State(), "stateId");
 	}
 	
 	public List<Object> getAllClients() {
-		return dl.selectAllRows(new Client());
+		return dl.selectAllRows(new Client(), "name");
 	}
 	
 	public void insertAddress(Address address) {
@@ -44,7 +48,6 @@ public class BusinessDelegate {
 
 	public void createProduct(Product product) {
 		dl.createRow(product);
-		
 	}
 	public Category getCategory(Serializable id){
 		return dl.getCategory(id);
