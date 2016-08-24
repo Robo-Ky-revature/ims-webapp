@@ -144,14 +144,6 @@ public class MainController implements ApplicationContextAware{
 		return catagories;
 	}
 	
-	@RequestMapping(value="getAllProducts.do", method=RequestMethod.GET,
-			produces="application/json")
-	@ResponseBody
-	public List<Object> getAllProducts() {
-		products = bd.getAllProducts();
-		return products;
-	}
-	
 	@RequestMapping(method=RequestMethod.POST, value="insertClient.do")
 	@ResponseBody
 	public String insertClient(HttpServletRequest request) {
