@@ -6,6 +6,8 @@ import java.util.Set;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
@@ -13,10 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.revature.IMS.BusinessDelegate;
 import com.revature.beans.Address;
@@ -41,6 +45,7 @@ public class MainController implements ApplicationContextAware{
 	private List<Object> clients = new Vector<Object>();
 	private List<Object> products = new Vector<Object>();
 	private List<Object> states = new Vector<Object>();
+	private List<Object> catagories = new Vector<Object>();
 	
 	@RequestMapping(value="goHome.do", method=RequestMethod.GET)
 	public String home() {
@@ -64,32 +69,46 @@ public class MainController implements ApplicationContextAware{
 		clients = bd.getAllClients();
 		return clients;
 	}
+	@RequestMapping(value="getAllProducts.do", method=RequestMethod.GET,
+			produces="application/json")
+	@ResponseBody
+	public List<Object> getAllProducts() {
+		products = bd.getAllProducts();
+		return products;
+	}
 	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
-	public void createNewProduct(/*HttpServletRequest req*/ Product product){
+	public String createNewProduct(HttpServletRequest req){
+//		if (bindingResult.hasErrors()){
+//			return new ModelAndView("home");
+//		}
+		//BindingResult bindingResult=BindingResult
 		log.info("starting product creation");
-		Set<Product> products = new HashSet<Product>();
+		//Set<Product> products = new HashSet<Product>();
 		Set<Category> catagories = new HashSet<Category>();
-		
-//		product = (Product) context.getBean("product");
-//		product.setProductName(req.getParameter("productName"));
-//		product.setShortName(req.getParameter("shortName"));
-//		product.setReorder(Integer.parseInt(req.getParameter("reorder")));log.error("reorder needs authentication");
-//		product.setWeight(Double.parseDouble(req.getParameter("weight")));log.error("weight needs authentication");
-//		product.setSize(req.getParameter("size"));
-//		product.setCost(Double.parseDouble(req.getParameter("cost")));log.error("unit cost needs authentication");
-//		product.setPrice(Double.parseDouble(req.getParameter("price")));log.error("sales cost needs authentication");
-//		product.setDescription(req.getParameter("description"));
-		products.add(product);
-		Category category = new Category(1, "test Case",products);
+		Product product = new Product();
+		//product = (Product) context.getBean("product");
+		product.setProductName(req.getParameter("productName"));
+		product.setShortName(req.getParameter("shortName"));
+		product.setReorder(Integer.parseInt(req.getParameter("reorder")));log.error("reorder needs authentication");
+		product.setWeight(Double.parseDouble(req.getParameter("weight")));log.error("weight needs authentication");
+		product.setSize(req.getParameter("size"));
+		product.setCost(Double.parseDouble(req.getParameter("cost")));log.error("unit cost needs authentication");
+		product.setPrice(Double.parseDouble(req.getParameter("price")));log.error("sales cost needs authentication");
+		product.setDescription(req.getParameter("description"));
+		//products.add(product);
+		Category category = new Category();
+		category.setDescription("test");
 		catagories.add(category);
-
 		product.setCatagories(catagories);
 		log.info("inserting new product " +product);
-
-		product.setCatagories(catagories);
-		log.error("inserting new product " +product);
+		//ModelAndView mv = new ModelAndView();
 		
+		//mv.setViewName("view");
+		//mv.addObject("success","Product added");
 		bd.createProduct(product);
+	//	return mv;
+		return"products";
+		
 		
 	}
 	
@@ -99,6 +118,13 @@ public class MainController implements ApplicationContextAware{
 	public List<Object> getAllStates() {
 		states = bd.getAllStates();
 		return states;
+	}
+	@RequestMapping(value="getAllCategories.do", method=RequestMethod.GET,
+			produces="application/json")
+	@ResponseBody
+	public List<Object> getAllCategories() {
+		catagories =  bd.getAllCategories();
+		return catagories;
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="insertClient.do")
@@ -154,6 +180,12 @@ public class MainController implements ApplicationContextAware{
 	public String deleteClient(HttpServletRequest request) {
 		bd.deleteClient(Integer.parseInt(request.getParameter("clientId")));
 		return "clients";
+	}
+	@RequestMapping(method=RequestMethod.POST, value="deleteProduct.do")
+	@ResponseBody
+	public String deleteProduct(HttpServletRequest request) {
+		bd.deleteProduct(Integer.parseInt(request.getParameter("upc")));
+		return "products";
 	}
 
 	@Override
