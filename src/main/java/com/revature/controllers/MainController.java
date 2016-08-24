@@ -47,6 +47,11 @@ public class MainController implements ApplicationContextAware{
 		return "home"; 
 	}
 	
+	@RequestMapping(value="goInvoices.do", method=RequestMethod.GET)
+	public String invoices() {
+		return "invoices";
+	}
+	
 	@RequestMapping(value="goClients.do", method=RequestMethod.GET)
 	public String clients(HttpServletRequest request) {
 		return "clients";
