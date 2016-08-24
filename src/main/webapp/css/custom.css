@@ -150,82 +150,11 @@
 .table > tfoot > tr > th {
 	background-color: #44c;
 	color: #fff;
+	vertical-align: text-bottom;
 }
 
-.table > tbody > tr > th:hover {
-	color: #fff;
-	text-shadow: 0px 0px 10px 5px #008;
-}
-
-.table > thead > tr > td:hover,
-.table > tbody > tr > td:hover,
-.table > tfoot > tr > td:hover,
-.table > thead > tr > td:focus,
-.table > tbody > tr > td:focus,
-.table > tfoot > tr > td:focus {
-	background-color: #eee;
-}    
-.table > thead > tr > td.pending,
-.table > tbody > tr > td.pending,
-.table > tfoot > tr > td.pending,
-.table > thead > tr > th.pending,
-.table > tbody > tr > th.pending,
-.table > tfoot > tr > th.pending {
-  background-color: #ffffb0;
-}
-.table > thead > tr > td.pending:hover,
-.table > tbody > tr > td.pending:hover,
-.table > tfoot > tr > td.pending:hover,
-.table > thead > tr > td.pending:focus,
-.table > tbody > tr > td.pending:focus,
-.table > tfoot > tr > td.pending:focus {
-  background-color: #ffff40;
-}
-.table > thead > tr > td.approved,
-.table > tbody > tr > td.approved,
-.table > tfoot > tr > td.approved,
-.table > thead > tr > th.approved,
-.table > tbody > tr > th.approved,
-.table > tfoot > tr > th.approved {
-  background-color: #9fff80;
-}
-.table > thead > tr > td.approved:hover,
-.table > tbody > tr > td.approved:hover,
-.table > tfoot > tr > td.approved:hover,
-.table > thead > tr > td.approved:focus,
-.table > tbody > tr > td.approved:focus,
-.table > tfoot > tr > td.approved:focus {
-  background-color: #40ff40;
-}
-.table > thead > tr > td.denied,
-.table > tbody > tr > td.denied,
-.table > tfoot > tr > td.denied,
-.table > thead > tr > th.denied,
-.table > tbody > tr > th.denied,
-.table > tfoot > tr > th.denied {
-  background-color: #ff9999;
-}
-.table > thead > tr > td.denied:hover,
-.table > tbody > tr > td.denied:hover,
-.table > tfoot > tr > td.denied:hover,
-.table > thead > tr > td.denied:focus,
-.table > tbody > tr > td.denied:focus,
-.table > tfoot > tr > td.denied:focus {
-  background-color: #ff6060;
-}
-.table > thead > tr > td.cancelled,
-.table > tbody > tr > td.cancelled,
-.table > tfoot > tr > td.cancelled,
-.table > thead > tr > th.cancelled,
-.table > tbody > tr > th.cancelled,
-.table > tfoot > tr > th.cancelled {
-  background-color: #ddd;
-}
-.table > thead > tr > td.cancelled:hover,
-.table > tbody > tr > td.cancelled:hover,
-.table > tfoot > tr > td.cancelled:hover,
-.table > thead > tr > td.cancelled:focus,
-.table > tbody > tr > td.cancelled:focus,
-.table > tfoot > tr > td.cancelled:focus {
-  background-color: #bbb;
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+	vertical-align: text-bottom;
 }

@@ -47,6 +47,11 @@ public class MainController implements ApplicationContextAware{
 		return "home"; 
 	}
 	
+	@RequestMapping(value="goInvoices.do", method=RequestMethod.GET)
+	public String invoices() {
+		return "invoices";
+	}
+	
 	@RequestMapping(value="goClients.do", method=RequestMethod.GET)
 	public String clients(HttpServletRequest request) {
 		return "clients";
@@ -99,6 +104,14 @@ public class MainController implements ApplicationContextAware{
 	public List<Object> getAllStates() {
 		states = bd.getAllStates();
 		return states;
+	}
+	
+	@RequestMapping(value="getAllProducts.do", method=RequestMethod.GET,
+			produces="application/json")
+	@ResponseBody
+	public List<Object> getAllProducts() {
+		products = bd.getAllProducts();
+		return products;
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="insertClient.do")
