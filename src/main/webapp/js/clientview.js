@@ -40,15 +40,15 @@ $(document).ready(function(){
 					+"<th>Actions</th>"
 					+"</tr>");
 			$.each(resp, function(i, item){
-				console.log(item);
 				$("#clients").append(
 					"<tr><td class='tdid'>"+item.clientId
 					+"</td><td class='tdname'>"+item.name
 					+"</td><td class='tdemail'>"+item.email
 					+"</td><td class='tdtype'>"+item.type.type
-					+"</td><td class='tdadd'><p id='l1'>"+item.address.streetAddress1+"</p><p id='l2'>"+item.address.streetAddress2
-						+"</p><p id='ct'>"+item.address.city+"</p><p id='st'>"+item.address.state.abbreviation+"</p><p id='zp'>"+item.address.zip
-					+"</p></td><td class='tdphone'>"+item.phone
+					+"</td><td class='tdadd'><div class='aid' style='display: none;'>"+item.address.addressId
+						+"</div><div class='l1'>"+item.address.streetAddress1+"</div><div class='l2'>"+item.address.streetAddress2
+						+"</div><div class='ct'>"+item.address.city+"</div><div class='st'>"+item.address.state.abbreviation+"</div><div class='zp'>"+item.address.zip
+					+"</div></td><td class='tdphone'>"+item.phone
 					+"</td><td class='tdfax'>"+item.fax
 					+"</td><td class='tdacts'><button type='button' class='btn btn-default btn-sm update' data-toggle='modal' data-target='#upModal'>Update</button> "
 						+"<button type='button' class='btn btn-default btn-sm delete' data-toggle='modal' data-target='#delModal'>Delete</button>"
@@ -64,17 +64,18 @@ $(document).ready(function(){
 					upid: $(this).find($(".tdid")).html(),
 					upname: $(this).find($(".tdname")).html(),
 					upemail: $(this).find($(".tdemail")).html(),
-					upl1: $(this).find($(".tdadd")).find($("#l1")).html(),
-					upl2: $(this).find($(".tdadd")).find($("#l2")).html(),
-					upct: $(this).find($(".tdadd")).find($("#ct")).html(),
-					upzp: $(this).find($(".tdadd")).find($("#zp")).html(),
+					upaid: $(this).find($(".tdadd")).find($(".aid")).html(),
+					upl1: $(this).find($(".tdadd")).find($(".l1")).html(),
+					upl2: $(this).find($(".tdadd")).find($(".l2")).html(),
+					upct: $(this).find($(".tdadd")).find($(".ct")).html(),
+					upzp: $(this).find($(".tdadd")).find($(".zp")).html(),
 					upphone: $(this).find($(".tdphone")).html(),
 					upfax: $(this).find($(".tdfax")).html()};
-			
 			$(this).find($(".tdacts")).find($(".update")).click(function(){
-				
+				$("#upid").val(formVals.upid);
 				$("#upname").val(formVals.upname);
 				$("#upemail").val(formVals.upemail);
+				$("#upaid").val(formVals.upaid);
 				$("#upaddline1").val(formVals.upl1);
 				$("#upaddline2").val(formVals.upl2);
 				$("#upaddcity").val(formVals.upct);

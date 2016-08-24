@@ -103,7 +103,7 @@ public class MainController implements ApplicationContextAware{
 	
 	@RequestMapping(method=RequestMethod.POST, value="insertClient.do")
 	@ResponseBody
-	public void insertClient(HttpServletRequest request) {
+	public String insertClient(HttpServletRequest request) {
 		ClientType type = (ClientType) bd.selectType(request.getParameter("type")).get(0);
 		State st = (State) bd.selectState(request.getParameter("state")).get(0);
 		Address add = new Address();
@@ -122,36 +122,38 @@ public class MainController implements ApplicationContextAware{
 		client.setFax(request.getParameter("fax"));
 		client.setContactName("Grace");
 		bd.insertClient(client);
+		return "clients";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="updateClient.do")
 	@ResponseBody
-	public void updateClient(HttpServletRequest request) {
+	public String updateClient(HttpServletRequest request) {
 		//ClientType type = (ClientType) bd.selectType(request.getParameter("type")).get(0);
 		State st = (State) bd.selectState(request.getParameter("state")).get(0);
 		Address add = new Address();
+		add.setAddressId(Integer.parseInt(request.getParameter("addressId")));
 		add.setStreetAddress1(request.getParameter("streetAddress1"));
 		add.setStreetAddress2(request.getParameter("streetAddress2"));
 		add.setCity(request.getParameter("city"));
 		add.setState(st);
 		add.setZip(request.getParameter("zip"));
-		bd.updateAddress(add);
-		Client client = new Client();
+		//bd.updateAddress(add);
+		Client client = (Client) bd.selectClient(request.getParameter("clientId")).get(0);
 		client.setAddress(add);
 		//client.setType(type);
-		client.setClientId(Integer.parseInt(request.getParameter("clientId")));
 		client.setName(request.getParameter("name"));
 		client.setEmail(request.getParameter("email"));
 		client.setPhone(request.getParameter("phone"));
 		client.setFax(request.getParameter("fax"));
-		client.setContactName("Grace");
 		bd.updateClient(client);
+		return "clients";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="deleteClient.do")
 	@ResponseBody
-	public void deleteClient(HttpServletRequest request) {
+	public String deleteClient(HttpServletRequest request) {
 		bd.deleteClient(Integer.parseInt(request.getParameter("clientId")));
+		return "clients";
 	}
 
 	@Override
