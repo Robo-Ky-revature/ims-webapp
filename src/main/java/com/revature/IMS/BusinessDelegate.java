@@ -46,6 +46,9 @@ public class BusinessDelegate {
 		dl.createRow(product);
 		
 	}
+	public Category getCategory(Serializable id){
+		return dl.getCategory(id);
+	}
 	
 	public void insertClient(Client client) {
 		dl.createRow(client);
@@ -66,6 +69,9 @@ public class BusinessDelegate {
 	public void deleteProduct(Serializable id) {
 		dl.delete(new Product(), id);
 		
+	}
+	public Category getCategoryById(int id){
+		dl.
 	}
 	
 }
