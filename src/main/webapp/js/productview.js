@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	var categorysel = document.createElement("select");
+	categorysel.multiple = true;
 
 	
 	

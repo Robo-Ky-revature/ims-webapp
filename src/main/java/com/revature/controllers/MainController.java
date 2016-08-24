@@ -6,8 +6,6 @@ import java.util.Set;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
@@ -15,12 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.revature.IMS.BusinessDelegate;
 import com.revature.beans.Address;
@@ -78,6 +73,7 @@ public class MainController implements ApplicationContextAware{
 	}
 	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
 	public String createNewProduct(HttpServletRequest req){
+		
 //		if (bindingResult.hasErrors()){
 //			return new ModelAndView("home");
 //		}
@@ -96,9 +92,13 @@ public class MainController implements ApplicationContextAware{
 		product.setPrice(Double.parseDouble(req.getParameter("price")));log.error("sales cost needs authentication");
 		product.setDescription(req.getParameter("description"));
 		//products.add(product);
-		Category category = new Category();
-		category.setDescription("test");
-		catagories.add(category);
+		String catRes[] =  req.getParameterValues("category");
+			for (String category : catRes) {
+				Category obj = new Category();
+				obj = bd.getCategory(Integer.parseInt(category));
+				catagories.add(obj);
+				
+			}
 		product.setCatagories(catagories);
 		log.info("inserting new product " +product);
 		//ModelAndView mv = new ModelAndView();
