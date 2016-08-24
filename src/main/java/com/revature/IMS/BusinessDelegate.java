@@ -2,6 +2,7 @@ package com.revature.IMS;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -24,6 +25,9 @@ public class BusinessDelegate {
 	
 	public List<Object> selectClient(String clientId) {
 		return dl.selectRestricted(new Client(), "clientId", Integer.parseInt(clientId));
+	}
+	public List<Object> selectProduct(String name) {
+		return dl.selectRestricted(new Product(), "productName", name);
 	}
 
 	public List<Object> getAllProducts() {
@@ -60,7 +64,9 @@ public class BusinessDelegate {
 	public void updateClient(Client client) {
 		dl.updateRow(client);
 	}
-	
+	public void updateCategory(Category category){
+		dl.updateRow(category);
+	}
 	public void deleteClient(Serializable id) {
 		dl.delete(new Client(), id);
 	}
