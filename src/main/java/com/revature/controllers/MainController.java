@@ -86,19 +86,31 @@ public class MainController implements ApplicationContextAware{
 		product.setProductName(req.getParameter("productName"));
 		product.setShortName(req.getParameter("shortName"));
 		product.setReorder(Integer.parseInt(req.getParameter("reorder")));log.error("reorder needs authentication");
+		product.setOnHand(Integer.parseInt(req.getParameter("reorder")));
 		product.setWeight(Double.parseDouble(req.getParameter("weight")));log.error("weight needs authentication");
 		product.setSize(req.getParameter("size"));
 		product.setCost(Double.parseDouble(req.getParameter("cost")));log.error("unit cost needs authentication");
 		product.setPrice(Double.parseDouble(req.getParameter("price")));log.error("sales cost needs authentication");
 		product.setDescription(req.getParameter("description"));
 		//products.add(product);
-		String catRes[] =  req.getParameterValues("category");
-			for (String category : catRes) {
+		log.error("before getting parameters");
+		String[] catRes =  req.getParameterValues("category");
+		log.error(req.getParameter("category"));
+		
+		log.error(catRes[0]);
+		log.error("after getting parameters");
+		int i = 0;	
+		for (String category : catRes) {
+				log.error(category);
 				Category obj = new Category();
+				if (category!=null){
 				obj = bd.getCategory(Integer.parseInt(category));
-				catagories.add(obj);
+				log.error(obj.getDescription());
+				catagories.add(obj);}
+				
 				
 			}
+		log.error("end of loop");
 		product.setCatagories(catagories);
 		log.info("inserting new product " +product);
 		//ModelAndView mv = new ModelAndView();

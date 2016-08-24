@@ -1,6 +1,8 @@
 $(document).ready(function(){
 	var categorysel = document.createElement("select");
+	categorysel.name = "category";
 	categorysel.multiple = true;
+	
 
 	
 	
@@ -13,7 +15,7 @@ $(document).ready(function(){
 		success: function(resp){
 			$.each(resp, function(i, item) {
 				var op = document.createElement("option");
-				op.value=item.categoryId;
+				op.value= item.catagoryId;
 				op.text = item.description;			
 				categorysel.appendChild(op);
 			})
