@@ -44,7 +44,7 @@ public class MainController implements ApplicationContextAware{
 	private BusinessDelegate bd = new BusinessDelegate();
 	
 	private List<Object> clients = new Vector<Object>();
-	private List<Object> products = new Vector<Object>();
+	private Set<Object> products = new HashSet<Object>();
 	private List<Object> states = new Vector<Object>();
 	private List<Object> catagories = new Vector<Object>();
 	private List<Object> invoices = new Vector<Object>();
@@ -80,8 +80,13 @@ public class MainController implements ApplicationContextAware{
 	@RequestMapping(value="getAllProducts.do", method=RequestMethod.GET,
 			produces="application/json")
 	@ResponseBody
-	public List<Object> getAllProducts() {
-		products = bd.getAllProducts();
+	public Set<Object> getAllProducts() {
+//		Set<Object> setProduct = new HashSet<Object>(bd.getAllProducts());
+		products = new HashSet<Object>(bd.getAllProducts());
+
+//		for (Object object : products) {
+//			log.error(object.toString());
+//		}
 		return products;
 	}
 	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
@@ -269,16 +274,75 @@ public class MainController implements ApplicationContextAware{
 		bd.updateClient(client);
 		return new ModelAndView("redirect:goClients.do");
 	}
-	
+	@RequestMapping(method=RequestMethod.POST, value="updateProduct.do")
+	@ResponseBody
+	public String updateProduct(HttpServletRequest req){
+		Set<Category> catagories = new HashSet<Category>();
+		Product product = new Product();
+		log.error(req.getParameter("productName"));
+		List<Object> pro =	 bd.selectProduct(req.getParameter("productName"));
+		product=(Product) pro.get(0);
+		//product = (Product) context.getBean("product");
+		product.setProductName(req.getParameter("productName"));
+		product.setOnHand(Integer.parseInt(req.getParameter("onHand")));
+		product.setWeight(Double.parseDouble(req.getParameter("weight")));log.error("weight needs authentication");
+		product.setSize(req.getParameter("size"));
+		product.setCost(Double.parseDouble(req.getParameter("cost")));log.error("unit cost needs authentication");
+		product.setPrice(Double.parseDouble(req.getParameter("price")));log.error("sales cost needs authentication");
+		product.setDescription(req.getParameter("description"));
+		product.setCatagories(null);
+		//products.add(product);
+		log.error("before getting parameters");
+		String[] catRes =  req.getParameterValues("category");
+		log.error(req.getParameter("category"));
+		
+		log.error(catRes[0]);
+		log.error("after getting parameters");
+		int i = 0;	
+		for (String category : catRes) {
+				log.error(category);
+				Category obj = new Category();
+				if (category!=null){
+				obj = bd.getCategory(Integer.parseInt(category));
+				log.error(obj.getDescription());
+				catagories.add(obj);}
+				
+				
+			}
+		log.error("end of loop");
+		product.setCatagories(catagories);
+		log.info("inserting new product " +product);
+
+		bd.updateProduct(product);//creating product with one way mapping
+		Product temp = new Product();
+		Set<Product> updatedProd = new HashSet<Product>();
+		updatedProd.add((Product)bd.selectProduct(product.getProductName()).get(0)) ;
+		log.error(updatedProd.isEmpty());
+		
+		for (String category : catRes) {
+			log.error(category);
+			Category obj = new Category();
+			if (category!=null){
+			obj = bd.getCategory(Integer.parseInt(category));
+			obj.setProducts(updatedProd);
+			bd.updateCategory(obj);
+			
+			
+		}
+		}
+		return "products";
+	}
 	@RequestMapping(method=RequestMethod.POST, value="deleteClient.do")
 	@ResponseBody
 	public ModelAndView deleteClient(HttpServletRequest request) {
+		log.error("Attempting to delete" +request.getParameter("clientId"));
 		bd.deleteClient(Integer.parseInt(request.getParameter("clientId")));
 		return new ModelAndView("redirect:goClients.do");
 	}
 	@RequestMapping(method=RequestMethod.POST, value="deleteProduct.do")
 	@ResponseBody
 	public ModelAndView deleteProduct(HttpServletRequest request) {
+		log.error("Attempting to delete" + request.getParameter("upc"));
 		bd.deleteProduct(Integer.parseInt(request.getParameter("upc")));
 		return new ModelAndView("redirect:goProducts.do");
 	}

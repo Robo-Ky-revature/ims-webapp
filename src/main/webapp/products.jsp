@@ -116,11 +116,11 @@
 	        <h4 class="modal-title" id="myModalLabel">Update Product</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form id="updateForm" action = "#" method="post">
+	      	<form id="updateForm" action = "updateProduct.do" method="post">
 	      		<input type="hidden" id="upupc" name = "upc">
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="upname" type="text" name="name" class="form-control" />
+	    			<input id="upname" type="text" name="productName" class="form-control" />
 	    		</div>
 	    		<h4>Weight</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
@@ -130,17 +130,25 @@
 	    		<div class="input-group" style="padding-bottom: 15px;">
 	    			<input id="upsize" type="text" name="size" class="form-control" />
 	    		</div>
-	    		<h4>Cost</h4>
+	    		<h4>Unit Cost</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
 	    			<input id="upcost" type="text" name="cost" class="form-control" />
 	    		</div>
+	    		<h4>Sales Cost</h4>
+	    		<div class="input-group" style="padding-bottom: 15px;">
+	    			<input id="upprice" type="text" name="price" class="form-control" />
+	    		</div>
+	    		<h4>On Hand Quantity</h4>
+	    		<div class="input-group" style="padding-bottom: 15px;">
+	    			<input id="upquan" type="text" name="onHand" class="form-control" />
+	    		</div>
 		    	<h4>Description</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		  			<textarea id="updesc" class="form-control" name="desc" rows="4"></textarea>
+		  			<textarea id="updesc" class="form-control" name="description" rows="4"></textarea>
 		    	</div>
 		    	<h4>Category</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="upcat" type="text" name="cat" class="form-control" />
+	    			<div id="upcat" name="cat"></div>
 	    		</div>
 		        <button type="submit" form="updateForm" class="btn btn-default">Save changes</button>
 	    	</form>

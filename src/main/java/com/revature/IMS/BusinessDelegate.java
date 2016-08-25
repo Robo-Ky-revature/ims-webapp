@@ -100,5 +100,10 @@ public class BusinessDelegate {
 		dl.createRow(order);
 	}
 
+	public void updateProduct(Product product) {
+		dl.updateRow(product);
+		
+	}
+
 	
 }
