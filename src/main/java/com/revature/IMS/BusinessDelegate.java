@@ -25,6 +25,10 @@ public class BusinessDelegate {
 	public List<Object> selectClient(String clientId) {
 		return dl.selectRestricted(new Client(), "clientId", Integer.parseInt(clientId));
 	}
+	
+	public List<Object> selectProduct(String upc) {
+		return dl.selectRestricted(new Product(), "upc", Integer.parseInt(upc));
+	}
 
 	public List<Object> getAllProducts() {
 		return dl.selectAllRows(new Product(), "productName");
@@ -71,7 +75,14 @@ public class BusinessDelegate {
 
 	public void deleteProduct(Serializable id) {
 		dl.delete(new Product(), id);
-		
+	}
+	
+	public void insertPoLine(POLine line) {
+		dl.createRow(line);
+	}
+	
+	public void insertPurchaseOrder(PurchaseOrder order) {
+		dl.createRow(order);
 	}
 
 	

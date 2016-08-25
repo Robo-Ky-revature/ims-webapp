@@ -1,6 +1,8 @@
 package com.revature.controllers;
 
+import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
@@ -22,7 +24,10 @@ import com.revature.beans.Address;
 import com.revature.beans.Category;
 import com.revature.beans.Client;
 import com.revature.beans.ClientType;
+import com.revature.beans.POLine;
+import com.revature.beans.POLineId;
 import com.revature.beans.Product;
+import com.revature.beans.PurchaseOrder;
 import com.revature.beans.State;
 
 @Controller
@@ -142,6 +147,47 @@ public class MainController implements ApplicationContextAware{
 	public List<Object> getAllCategories() {
 		catagories =  bd.getAllCategories();
 		return catagories;
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="insertInvoice.do")
+	@ResponseBody
+	public String insertInvoice(HttpServletRequest request) {
+		PurchaseOrder porder = new PurchaseOrder();
+		Client cli = (Client) bd.selectClient(request.getParameter("client")).get(0);
+		int clitype = Integer.parseInt(request.getParameter("clientType"));
+		porder.setClient(cli);
+		String[] upcs = request.getParameterValues("upc"), prices = request.getParameterValues("price"),
+				onhand = request.getParameterValues("onHand"), quants = request.getParameterValues("quantity"),
+				lineids = request.getParameterValues("line");
+		Set<POLine> orders = new HashSet<POLine>();
+		double subtotal = 0.0;
+		for (int i=0; i<upcs.length; i++) {
+			POLine pol = new POLine();
+			Product p = (Product) bd.selectProduct(upcs[i]).get(0);
+			if (clitype == 1)
+				p.setOnHand(p.getOnHand() - Integer.parseInt(quants[i]));
+			else if (clitype == 2)
+				p.setOnHand(p.getOnHand() + Integer.parseInt(quants[i]));
+			pol.setProduct(p);
+			pol.setPrice(Double.parseDouble(prices[i]));
+			pol.setQuantity(Integer.parseInt(quants[i]));
+			subtotal += Double.parseDouble(prices[i]) * Integer.parseInt(quants[i]);
+			POLineId lineid = new POLineId();
+			lineid.setLine(Integer.parseInt(lineids[i]));
+			pol.setPoLineId(lineid);
+			orders.add(pol);
+		}
+		porder.setSubtotal(subtotal);
+		double tax = 0.7 * subtotal;
+		porder.setTax(tax);
+		porder.setTotal(subtotal + tax);
+		bd.insertPurchaseOrder(porder);
+		Iterator<POLine> i = orders.iterator();
+		while (i.hasNext()) {
+			POLine pol = i.next();
+			pol.getPoLineId().setOrder(porder);
+			bd.insertPoLine(pol);
+		}
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="insertClient.do")
