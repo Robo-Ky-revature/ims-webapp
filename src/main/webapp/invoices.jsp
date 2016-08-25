@@ -32,13 +32,15 @@
 			<div class="col-md-12">
 				<div class="jumbotron">
 					<h1 style="font-size: 32px;">All Invoices</h1>
-					<button id="newform" class="btn btn-default btn-lg" role="button" data-toggle="modal" data-target="#newModal">Create Invoice</button>
+					<button id="newbutton" class="btn btn-default btn-lg" role="button" data-toggle="modal" data-target="#newModal">Create Invoice</button>
 					<table id="invoices" class="table">
 						<tr class="header">
 							<th>Invoice #</th>
 							<th>Date</th>
 							<th>Client</th>
 							<th>Incoming/Outgoing</th>
+							<th>Subtotal</th>
+							<th>Tax</th>
 							<th>Total</th>
 							<th></th>
 						</tr>
@@ -48,6 +50,8 @@
 							<td>Wizards of the Coast</td>
 							<td>Incoming</td>
 							<td>$300.00</td>
+							<td>$70.00</td>
+							<td>$370.00</td>
 							<td align="center"><button id="lineview" class="btn btn-default btn-md" role="button" data-toggle="modal" data-target="#exModal">Expand</button></td>
 						</tr>
 					</table>
@@ -56,27 +60,33 @@
 		</div>
 	</div>
 	<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
+	  <div class="modal-dialog modal-lg" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">New Client</h4>
+	        <h4 class="modal-title" id="myModalLabel">Create Invoice</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form id="newForm" class="form-horizontal" action = "insertClient.do" method="post">
+	      	<form id="newForm" action = "insertInvoice.do" method="post">
 	      		<h4>Client</h4>
 	    		<div class="form-group" style="padding-bottom: 15px;">
 	    			<div id="selclient"></div>
 	    		</div>
-	      		<div class="form-group" style="padding-bottom: 15px;">
-	      			<label class="radio-inline"><input type="radio" name="type" value="1" checked>Retailer</label>
-    				<label class="radio-inline"><input type="radio" name="type" value="2">Supplier</label>
+	      		<div id="clitype" class="form-group" style="padding-bottom: 15px;">
+	      			<input type="hidden" name="clientType" value="0"/>
+	      			<div id="ctypetext">---</div>
 	      		</div>
-	      		<h4>Product</h4>
-	    		<div class="form-group" style="padding-bottom: 15px;">
-	    			<div id="selproduct"></div>
-	    		</div>
-	    		
+	      		<button id="addproduct" type="button" class="btn btn-default btn-md" role="button">Add Product</button>
+	      		<table id="productlines" class="table">
+	      			<tr>
+	      				<th>Product</th>
+	      				<th>Unit Cost</th>
+	      				<th>On Hand</th>
+	      				<th>Quantity</th>
+	      				<th>Subtotal</th>
+	      			</tr>
+	      		</table>
+	      		
 	    	</form>
 	      </div>
 	      <div class="modal-footer">
