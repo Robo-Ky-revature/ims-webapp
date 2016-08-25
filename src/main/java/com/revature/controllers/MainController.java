@@ -123,12 +123,24 @@ public class MainController implements ApplicationContextAware{
 		log.error("end of loop");
 		product.setCatagories(catagories);
 		log.info("inserting new product " +product);
-		//ModelAndView mv = new ModelAndView();
+
+		bd.createProduct(product);//creating product with one way mapping
+		Product temp = new Product();
+		Set<Product> updatedProd = new HashSet<Product>();
+		updatedProd.add((Product)bd.selectProduct(product.getProductName()).get(0)) ;
+		log.error(updatedProd.isEmpty());
 		
-		//mv.setViewName("view");
-		//mv.addObject("success","Product added");
-		bd.createProduct(product);
-	//	return mv;
+		for (String category : catRes) {
+			log.error(category);
+			Category obj = new Category();
+			if (category!=null){
+			obj = bd.getCategory(Integer.parseInt(category));
+			obj.setProducts(updatedProd);
+			bd.updateCategory(obj);
+			
+			
+		}
+		}
 		return"products";
 		
 		
@@ -188,6 +200,7 @@ public class MainController implements ApplicationContextAware{
 			pol.getPoLineId().setOrder(porder);
 			bd.insertPoLine(pol);
 		}
+		return "Success!";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="insertClient.do")

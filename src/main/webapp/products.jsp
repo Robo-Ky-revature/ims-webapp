@@ -117,6 +117,7 @@
 	      </div>
 	      <div class="modal-body">
 	      	<form id="updateForm" action = "#" method="post">
+	      		<input type="hidden" id="upupc" name = "upc">
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
 	    			<input id="upname" type="text" name="name" class="form-control" />

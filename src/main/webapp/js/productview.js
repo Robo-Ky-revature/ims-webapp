@@ -48,7 +48,7 @@ $(document).ready(function(){
 					+"</td><td class='tdcost'>"+item.cost
 					+"</td><td class='tddesc'>"+item.description
 					+"</td><td class='tdcat'>" + item.price
-					+"</td><td><button type='button' class='btn btn-default btn-sm update'>Update</button>"
+					+"</td><td class='tdacts'><button type='button' class='btn btn-default btn-sm update'>Update</button>"
 					+"<button type='button' class='btn btn-default btn-sm delete'>Delete</button>"
 					+"</td></tr>");
 			});
