@@ -38,7 +38,7 @@ public class MainController implements ApplicationContextAware{
 	private BusinessDelegate bd = new BusinessDelegate();
 	
 	private List<Object> clients = new Vector<Object>();
-	private List<Object> products = new Vector<Object>();
+	private Set<Object> products = new HashSet<Object>();
 	private List<Object> states = new Vector<Object>();
 	private List<Object> catagories = new Vector<Object>();
 	
@@ -72,8 +72,13 @@ public class MainController implements ApplicationContextAware{
 	@RequestMapping(value="getAllProducts.do", method=RequestMethod.GET,
 			produces="application/json")
 	@ResponseBody
-	public List<Object> getAllProducts() {
-		products = bd.getAllProducts();
+	public Set<Object> getAllProducts() {
+//		Set<Object> setProduct = new HashSet<Object>(bd.getAllProducts());
+		products = new HashSet<Object>(bd.getAllProducts());
+
+//		for (Object object : products) {
+//			log.error(object.toString());
+//		}
 		return products;
 	}
 	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
@@ -203,7 +208,12 @@ public class MainController implements ApplicationContextAware{
 		bd.updateClient(client);
 		return "clients";
 	}
-	
+	@RequestMapping(method=RequestMethod.POST, value="updateProduct.do")
+	@ResponseBody
+	public String updateProduct(HttpServletRequest req){
+		//need to do
+		return "products";
+	}
 	@RequestMapping(method=RequestMethod.POST, value="deleteClient.do")
 	@ResponseBody
 	public String deleteClient(HttpServletRequest request) {
