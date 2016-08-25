@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.revature.IMS.BusinessDelegate;
 import com.revature.beans.Address;
@@ -46,6 +47,8 @@ public class MainController implements ApplicationContextAware{
 	private Set<Object> products = new HashSet<Object>();
 	private List<Object> states = new Vector<Object>();
 	private List<Object> catagories = new Vector<Object>();
+	private List<Object> invoices = new Vector<Object>();
+	private List<Object> polines = new Vector<Object>();
 	
 	@RequestMapping(value="goHome.do", method=RequestMethod.GET)
 	public String home() {
@@ -87,7 +90,7 @@ public class MainController implements ApplicationContextAware{
 		return products;
 	}
 	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
-	public String createNewProduct(HttpServletRequest req){
+	public ModelAndView createNewProduct(HttpServletRequest req){
 		
 //		if (bindingResult.hasErrors()){
 //			return new ModelAndView("home");
@@ -146,7 +149,7 @@ public class MainController implements ApplicationContextAware{
 			
 		}
 		}
-		return"products";
+		return new ModelAndView("redirect:goProducts.do");
 		
 		
 	}
@@ -166,9 +169,25 @@ public class MainController implements ApplicationContextAware{
 		return catagories;
 	}
 	
+	@RequestMapping(value="getAllInvoices.do", method=RequestMethod.GET,
+			produces="application/json")
+	@ResponseBody
+	public List<Object> getAllInvoices() {
+		invoices = bd.getAllInvoices();
+		return invoices;
+	}
+	
+	@RequestMapping(value="getAllPoLines.do", method=RequestMethod.GET,
+			produces="application/json")
+	@ResponseBody
+	public List<Object> getAllPoLines() {
+		polines = bd.getAllPoLines();
+		return polines;
+	}
+	
 	@RequestMapping(method=RequestMethod.POST, value="insertInvoice.do")
 	@ResponseBody
-	public String insertInvoice(HttpServletRequest request) {
+	public ModelAndView insertInvoice(HttpServletRequest request) {
 		PurchaseOrder porder = new PurchaseOrder();
 		Client cli = (Client) bd.selectClient(request.getParameter("client")).get(0);
 		int clitype = Integer.parseInt(request.getParameter("clientType"));
@@ -205,12 +224,12 @@ public class MainController implements ApplicationContextAware{
 			pol.getPoLineId().setOrder(porder);
 			bd.insertPoLine(pol);
 		}
-		return "Success!";
+		return new ModelAndView("redirect:goInvoices.do");
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="insertClient.do")
 	@ResponseBody
-	public String insertClient(HttpServletRequest request) {
+	public ModelAndView insertClient(HttpServletRequest request) {
 		ClientType type = (ClientType) bd.selectType(request.getParameter("type")).get(0);
 		State st = (State) bd.selectState(request.getParameter("state")).get(0);
 		Address add = new Address();
@@ -229,12 +248,12 @@ public class MainController implements ApplicationContextAware{
 		client.setFax(request.getParameter("fax"));
 		client.setContactName("Grace");
 		bd.insertClient(client);
-		return "clients";
+		return new ModelAndView("redirect:goClients.do");
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="updateClient.do")
 	@ResponseBody
-	public String updateClient(HttpServletRequest request) {
+	public ModelAndView updateClient(HttpServletRequest request) {
 		//ClientType type = (ClientType) bd.selectType(request.getParameter("type")).get(0);
 		State st = (State) bd.selectState(request.getParameter("state")).get(0);
 		Address add = new Address();
@@ -253,7 +272,7 @@ public class MainController implements ApplicationContextAware{
 		client.setPhone(request.getParameter("phone"));
 		client.setFax(request.getParameter("fax"));
 		bd.updateClient(client);
-		return "clients";
+		return new ModelAndView("redirect:goClients.do");
 	}
 	@RequestMapping(method=RequestMethod.POST, value="updateProduct.do")
 	@ResponseBody
@@ -315,17 +334,18 @@ public class MainController implements ApplicationContextAware{
 	}
 	@RequestMapping(method=RequestMethod.POST, value="deleteClient.do")
 	@ResponseBody
-	public String deleteClient(HttpServletRequest request) {
-		log.error("Attempting to delete" +request.getParameter("clientId"));
+
+	public ModelAndView deleteClient(HttpServletRequest request) {
+	log.error("Attempting to delete" +request.getParameter("clientId"));
 		bd.deleteClient(Integer.parseInt(request.getParameter("clientId")));
-		return "clients";
+		return new ModelAndView("redirect:goClients.do");
 	}
 	@RequestMapping(method=RequestMethod.POST, value="deleteProduct.do")
 	@ResponseBody
-	public String deleteProduct(HttpServletRequest request) {
-		log.error("Attempting to delete" + request.getParameter("upc"));
+	public ModelAndView deleteProduct(HttpServletRequest request) {
+	log.error("Attempting to delete" + request.getParameter("upc"));
 		bd.deleteProduct(Integer.parseInt(request.getParameter("upc")));
-		return "products";
+		return new ModelAndView("redirect:goProducts.do");
 	}
 
 	@Override

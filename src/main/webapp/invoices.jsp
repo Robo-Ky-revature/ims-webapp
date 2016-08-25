@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,21 +39,11 @@
 							<th>Invoice #</th>
 							<th>Date</th>
 							<th>Client</th>
-							<th>Incoming/Outgoing</th>
+							<th>Type</th>
 							<th>Subtotal</th>
 							<th>Tax</th>
 							<th>Total</th>
 							<th></th>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>08-12-2016</td>
-							<td>Wizards of the Coast</td>
-							<td>Incoming</td>
-							<td>$300.00</td>
-							<td>$70.00</td>
-							<td>$370.00</td>
-							<td align="center"><button id="lineview" class="btn btn-default btn-md" role="button" data-toggle="modal" data-target="#exModal">Expand</button></td>
 						</tr>
 					</table>
 				</div>
@@ -104,7 +95,7 @@
 		        <h4 class="modal-title" id="invoiceLabel">Invoice #</h4>
 		      </div>
 		      <div class="modal-body">
-		      	<table id="expandedInv" class="table">
+		      	<table id="expandedinv" class="table">
 		      		<tr class="header">
 		      			<th>Product UPC</th>
 		      			<th>Name</th>
@@ -112,14 +103,6 @@
 		      			<th>Unit Price</th>
 		      			<th>Quantity</th>
 		      			<th>Total</th>
-		      		</tr>
-		      		<tr>
-		      			<td>69</td>
-		      			<td>Settlers of Catan</td>
-		      			<td>Board</td>
-		      			<td>20</td>
-		      			<td>15</td>
-		      			<td>300.00</td>
 		      		</tr>
 		      	</table>
 		      </div>

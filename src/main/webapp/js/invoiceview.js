@@ -1,6 +1,8 @@
 var products = [];
 var clients = [];
 var linenum = 1;
+var porders = [];
+var polines = [];
 
 $(document).ready(function(){
 	$("#newbutton").click(function(){
@@ -158,4 +160,90 @@ $(document).ready(function(){
 		newrow.appendChild(tdst);
 		$("#productlines").append(newrow);
 	});
+	
+	$.ajax({
+		headers: {          
+	   		"Accept" : "application/json"
+	   	}, 
+		url: "http://localhost:9001/IMS/getAllPoLines.do",
+		method: "GET",
+		success: function(resp){
+			$.each(resp, function(i, item) {
+				item.index = i;
+				polines.push(item);
+				console.log(item);
+			})
+		}
+	});
+	
+	$.ajax({
+		headers: {
+			"Accept" : "application/json"
+		},
+		url: "http://localhost:9001/IMS/getAllInvoices.do",
+		method: "GET",
+		success: function(resp){
+			$("#invoices").html("<tr class='header'>"
+				+"<th>Invoice #</th>"
+				+"<th>Date</th>"
+				+"<th>Client</th>"
+				+"<th>Type</th>"
+				+"<th>Subtotal</th>"
+				+"<th>Tax</th>"
+				+"<th>Total</th>"
+				+"<th></th>"
+				+"</tr>");
+			$.each(resp, function(i, item) {
+				item.index = i;
+				porders.push(item);
+				var invtype = "";
+				if (item.client.type.clientId == 1)
+					invtype = "Outgoing";
+				else
+					invtype = "Incoming";
+				$("#invoices").append(
+					"<tr><td class='tdnum'>"+item.orderNumber
+					+"</td><td class='tddate'>"+item.purchaseDate
+					+"</td><td class='tdcli'>"+item.client.name
+					+"</td><td class='tdtype'>"+invtype
+					+"</td><td class='tdsubt'>$"+item.subtotal.toFixed(2)
+					+"</td><td class='tdtax'>$"+item.tax.toFixed(2)
+					+"</td><td class='tdtot'>$"+item.total.toFixed(2)
+					+"</td><td class='tdex'>"
+						+"<button type='button' class='btn btn-default btn-md expand' data-toggle='modal' data-target='#exModal'>Expand</button></td></tr>");
+				setButtons();
+			})
+		}
+	});
+	
+	function setButtons() {
+		$("#invoices tr").each(function(){
+			$(this).find($(".tdex")).find($(".expand")).click(function(){
+				$(document).find($("#invoiceLabel")).html("Invoice #"+$(this).parent().parent().find($(".tdnum")).html());
+				var thisInv = [];
+				for (var i=0; i<polines.length; i++) {
+					if (polines[i].poLineId.order.orderNumber == $(this).parent().parent().find($(".tdnum")).html())
+						thisInv.push(polines[i]);
+				}
+				$("#expandedinv").html(
+						"<tr class='header'>"
+			      		+"<th>Product UPC</th>"
+			      		+"<th>Name</th>"
+			      		+"<th>Unit Price</th>"
+			      		+"<th>Quantity</th>"
+			      		+"<th>Subtotal</th></tr>"
+					);
+				for (var i=0; i<thisInv.length; i++) {
+					$("#expandedinv").append(
+							"<tr><td class='tdupc'>"+thisInv[i].product.upc
+				      		+"</td><td class='tdpname'>"+thisInv[i].product.productName
+				      		+"</td><td class='tdprice'>$"+thisInv[i].price.toFixed(2)
+				      		+"</td><td class='tdqty'>"+thisInv[i].quantity
+				      		+"</td><td class='tdsubt'><div>$"+(thisInv[i].price * thisInv[i].quantity).toFixed(2)
+				      		+"</td></tr>"
+						);
+				}
+			});
+		});
+	}
 })

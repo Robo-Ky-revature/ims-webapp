@@ -32,15 +32,27 @@ public class BusinessDelegate {
 	}
 
 	public List<Object> getAllProducts() {
-		return dl.selectAllRows(new Product(), "productName");
+		return dl.selectAllRows(new Product(), "productName", true);
 	}
 	
 	public List<Object> getAllStates() {
-		return dl.selectAllRows(new State(), "stateId");
+		return dl.selectAllRows(new State(), "stateId", true);
 	}
 	
 	public List<Object> getAllClients() {
-		return dl.selectAllRows(new Client(), "name");
+		return dl.selectAllRows(new Client(), "name", true);
+	}
+	
+	public List<Object> getAllInvoices() {
+		return dl.selectAllRows(new PurchaseOrder(), "orderNumber", false);
+	}
+	
+	public List<Object> getAllPoLines() {
+		return dl.selectAllRows(new POLine(), "poLineId.order", true);
+	}
+	
+	public List<Object> getPoLines(int orderNumber) {
+		return dl.selectRestricted(new POLine(), "order", orderNumber);
 	}
 	
 	public void insertAddress(Address address) {
@@ -73,7 +85,7 @@ public class BusinessDelegate {
 	}
 
 	public List<Object> getAllCategories() {
-		return dl.selectAllRows(new Category(),"catagoryId");
+		return dl.selectAllRows(new Category(),"catagoryId",true);
 	}
 
 	public void deleteProduct(Serializable id) {
