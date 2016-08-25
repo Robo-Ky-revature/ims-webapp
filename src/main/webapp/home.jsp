@@ -52,7 +52,15 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
+	
+	
+<div class="container-fluid" id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+
+<div class="container-fluid" id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 	</body>
 	<script src="js/reports.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 </html>
