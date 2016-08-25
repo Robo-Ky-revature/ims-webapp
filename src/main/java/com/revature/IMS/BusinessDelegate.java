@@ -30,6 +30,9 @@ public class BusinessDelegate {
 	public List<Object> selectProduct(String upc) {
 		return dl.selectRestricted(new Product(), "upc", Integer.parseInt(upc));
 	}
+	public List<Object> selectProducByName(String name) {
+		return dl.selectRestricted(new Product(), "productName", name);
+	}
 
 	public List<Object> getAllProducts() {
 		return dl.selectAllRows(new Product(), "productName", true);

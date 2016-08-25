@@ -20,7 +20,7 @@ $(document).ready(function(){
 		headers: {          
 	   		"Accept" : "application/json"
 	   	}, 
-		url: "http://localhost:9001/IMS/getAllClients.do",
+		url: "http://localhost:7001/IMS/getAllClients.do",
 		method: "GET",
 		success: function(resp){
 			$.each(resp, function(i, item) {
@@ -59,7 +59,7 @@ $(document).ready(function(){
 		headers: {          
 	   		"Accept" : "application/json"
 	   	}, 
-		url: "http://localhost:9001/IMS/getAllProducts.do",
+		url: "http://localhost:7001/IMS/getAllProducts.do",
 		method: "GET",
 		success: function(resp){
 			$.each(resp, function(i, item) {
@@ -165,7 +165,7 @@ $(document).ready(function(){
 		headers: {          
 	   		"Accept" : "application/json"
 	   	}, 
-		url: "http://localhost:9001/IMS/getAllPoLines.do",
+		url: "http://localhost:7001/IMS/getAllPoLines.do",
 		method: "GET",
 		success: function(resp){
 			$.each(resp, function(i, item) {
@@ -180,7 +180,7 @@ $(document).ready(function(){
 		headers: {
 			"Accept" : "application/json"
 		},
-		url: "http://localhost:9001/IMS/getAllInvoices.do",
+		url: "http://localhost:7001/IMS/getAllInvoices.do",
 		method: "GET",
 		success: function(resp){
 			$("#invoices").html("<tr class='header'>"

@@ -81,12 +81,7 @@ public class MainController implements ApplicationContextAware{
 			produces="application/json")
 	@ResponseBody
 	public Set<Object> getAllProducts() {
-//		Set<Object> setProduct = new HashSet<Object>(bd.getAllProducts());
 		products = new HashSet<Object>(bd.getAllProducts());
-
-//		for (Object object : products) {
-//			log.error(object.toString());
-//		}
 		return products;
 	}
 	@RequestMapping(value="createProduct.do", method=RequestMethod.POST)
@@ -135,7 +130,7 @@ public class MainController implements ApplicationContextAware{
 		bd.createProduct(product);//creating product with one way mapping
 		Product temp = new Product();
 		Set<Product> updatedProd = new HashSet<Product>();
-		updatedProd.add((Product)bd.selectProduct(product.getProductName()).get(0)) ;
+		updatedProd.add((Product)bd.selectProducByName(product.getProductName()).get(0)) ;
 		log.error(updatedProd.isEmpty());
 		
 		for (String category : catRes) {

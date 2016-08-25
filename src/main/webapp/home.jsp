@@ -17,6 +17,7 @@
     <!-- Bootstrap core CSS -->
     <link href="css/custom.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
   </head>
 
   <body>
@@ -31,6 +32,7 @@
 			<div class="col-md-3">
 				<div class="jumbotron">
 					<h1>Inventory Warnings</h1>
+					<div id="warning" name="warning"></div>
 				</div>
 				<a class="btn btn-default btn-lg" href="#" role="button">Order More</a>
 			</div>
@@ -52,4 +54,5 @@
 		</div>
 	</div>
 	</body>
+	<script src="js/reports.js"></script>
 </html>
