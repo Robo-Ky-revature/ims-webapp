@@ -116,11 +116,11 @@
 	        <h4 class="modal-title" id="myModalLabel">Update Product</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form id="updateForm" action = "#" method="post">
+	      	<form id="updateForm" action = "updateProduct.do" method="post">
 	      		<input type="hidden" id="upupc" name = "upc">
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="upname" type="text" name="name" class="form-control" />
+	    			<input id="upname" type="text" name="productName" class="form-control" />
 	    		</div>
 	    		<h4>Weight</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
@@ -144,7 +144,7 @@
 	    		</div>
 		    	<h4>Description</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		  			<textarea id="updesc" class="form-control" name="desc" rows="4"></textarea>
+		  			<textarea id="updesc" class="form-control" name="description" rows="4"></textarea>
 		    	</div>
 		    	<h4>Category</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">

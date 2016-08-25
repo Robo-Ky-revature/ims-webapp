@@ -70,7 +70,7 @@ $(document).ready(function(){
 		$(".delete").attr("data-toggle","modal");
 		$(".delete").attr("data-target","#delModal");
 		var formVals = {
-				upupc: $(this).find($(".tdupc").html),
+				upupc: $(this).find($(".tdupc")).html(),
 				upname: $(this).find($(".tdname")).html(),
 				upwei: $(this).find($(".tdwei")).html(),
 				upsize: $(this).find($(".tdsize")).html(),
@@ -81,6 +81,7 @@ $(document).ready(function(){
 				upcat: $(this).find($(".tdcat")).html()};
 		
 		$(this).find($(".update")).click(function(){
+			$("#upupc").val(formVals.upupc);
 			$("#upname").val(formVals.upname);
 			$("#upwei").val(formVals.upwei);
 			$("#upsize").val(formVals.upsize);
@@ -92,7 +93,7 @@ $(document).ready(function(){
 		})
 		$(this).find($(".tdacts")).find($(".delete")).click(function(){
 				$("#delname").html(formVals.upname);
-				$("#delid").val(formVals.upc);
+				$("#delid").val(formVals.upupc);
 			})
 	})
 	}

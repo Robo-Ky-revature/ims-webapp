@@ -80,5 +80,10 @@ public class BusinessDelegate {
 		
 	}
 
+	public void updateProduct(Product product) {
+		dl.updateRow(product);
+		
+	}
+
 	
 }
