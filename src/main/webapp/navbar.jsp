@@ -29,7 +29,7 @@
             <li id="navinv" type="submit"><a href="goInvoices.do">  Invoices  </a></li>
             <li id="navcli" type="submit"><a href="goClients.do">  Clients  </a></li>
             <li id="navpro" type="submit"><a href="goProducts.do">  Products  </a></li>
-            <li id="navrep" type="submit"><a href="goReports.do">  Reports  </a></li>
+            <li id="navrep" type="submit"><a href="goHome.do">  Reports  </a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -17,6 +17,7 @@
     <!-- Bootstrap core CSS -->
     <link href="css/custom.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
   </head>
 
   <body>
@@ -31,8 +32,9 @@
 			<div class="col-md-3">
 				<div class="jumbotron">
 					<h1>Inventory Warnings</h1>
+					<div id="warning" name="warning"></div>
 				</div>
-				<a class="btn btn-default btn-lg" href="#" role="button">Order More</a>
+				<a class="btn btn-default btn-lg" href="goInvoices.do" role="button">Order More</a>
 			</div>
 			<div class="col-md-9">
 				<div class="jumbotron">
@@ -50,6 +52,20 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
+	
+	
+
+
+
+<div class="container-fluid" id="container" style="min-width: 260px; max-width: 750px; height: 350px; margin: 0 auto"></div>
+
+<!-- <div class ="container-fluid"id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>  -->
+
+
 	</body>
+	<script src="js/reports.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 </html>
