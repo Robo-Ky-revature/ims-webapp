@@ -72,43 +72,65 @@ $(document).ready(function(){
 //		url: "http://localhost:7001/IMS/getAllProducts.do",
 //		method: "GET",
 //		success: function(resp){
-//	    $('#container').highcharts({
-//	        chart: {
-//	            type: 'bar'
-//	        },
-//	        title: {
-//	            text: 'Stacked bar chart'
-//	        },
-//	        xAxis: {
-//	            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
-//	        },
-//	        yAxis: {
-//	            min: 0,
-//	            title: {
-//	                text: 'Total fruit consumption'
-//	            }
-//	        },
-//	        legend: {
-//	            reversed: true
-//	        },
-//	        plotOptions: {
-//	            series: {
-//	                stacking: 'normal'
-//	            }
-//	        },
-//	        series: [{
-//	            name: 'John',
-//	            data: [5, 3, 4, 7, 2]
-//	        }, {
-//	            name: 'Jane',
-//	            data: [2, 2, 3, 2, 1]
-//	        }, {
-//	            name: 'Joe',
-//	            data: [3, 4, 4, 2, 5]
-//	        }]
-//	    });
-//		}
-//	});
+//    $('#container2').highcharts({
+//        chart: {
+//            type: 'bar'
+//        },
+//        title: {
+//            text: 'Best Selling Product'
+//        },
+//        subtitle: {
+//            text: '2016'
+//        },
+//        xAxis: {
+//            categories: ['prod1', 'prod2', 'prod3', 'prod4', 'prod5'],
+//            title: {
+//                text: null
+//            }
+//        },
+//        yAxis: {
+//            min: 0,
+//            title: {
+//                text: 'Revenue',
+//                align: 'high'
+//            },
+//            labels: {
+//                overflow: 'justify'
+//            }
+//        },
+//        tooltip: {
+//        	pointFormat: '{series.name}: <b>${point.y:.2f}</b>'
+//        },
+//        plotOptions: {
+//            bar: {
+//                dataLabels: {
+//                    enabled: true
+//                }
+//            }
+//        },
+//        legend: {
+//            layout: 'vertical',
+//            align: 'right',
+//            verticalAlign: 'top',
+//            x: -40,
+//            y: 80,
+//            floating: true,
+//            borderWidth: 1,
+//            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+//            shadow: true
+//        },
+//        credits: {
+//            enabled: false
+//        },
+//        series: [{
+//            name: 'Profit',
+//            data: [1052, 954, 4250, 740, 38]
+//        }, {
+//            name: 'Loss',
+//            data: [1052, 954, 4250, 740, 38]
+//        }]
+//    });
+//	}
 //});
 
 $.ajax({

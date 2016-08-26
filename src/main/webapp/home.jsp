@@ -34,7 +34,7 @@
 					<h1>Inventory Warnings</h1>
 					<div id="warning" name="warning"></div>
 				</div>
-				<a class="btn btn-default btn-lg" href="#" role="button">Order More</a>
+				<a class="btn btn-default btn-lg" href="goInvoices.do" role="button">Order More</a>
 			</div>
 			<div class="col-md-9">
 				<div class="jumbotron">
@@ -56,9 +56,14 @@
 	</div>
 	
 	
-<div class="container-fluid" id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
 
-<div class="container-fluid" id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+<div class="container-fluid" id="container" style="min-width: 260px; max-width: 750px; height: 350px; margin: 0 auto"></div>
+
+<!-- <div class ="container-fluid"id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>  -->
+
+
 	</body>
 	<script src="js/reports.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
