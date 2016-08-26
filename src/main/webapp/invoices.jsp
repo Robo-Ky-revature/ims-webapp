@@ -18,6 +18,7 @@
     <!-- Bootstrap core CSS -->
     <link href="css/custom.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.js"></script>
 	<script src="js/bootstrap.js"></script>
   </head>
 

@@ -17,6 +17,7 @@
     <!-- Bootstrap core CSS -->
     <link href="css/custom.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.js"></script>
 	<script src="js/bootstrap.js"></script>
   </head>
 
@@ -57,35 +58,35 @@
 	        <h4 class="modal-title" id="myModalLabel">New Client</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form id="newForm" action = "insertClient.do" method="post">
+	      	<form role="form" data-toggle="validator" id="newForm" action = "insertClient.do" method="post">
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newname" type="text" name="name" class="form-control" />
+	    			<input id="newname" type="text" name="name" class="form-control" required />
 	    		</div>
 	    		<h4>Email</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newemail" type="text" name="email" class="form-control" />
+	    			<input id="newemail" type="email" name="email" class="form-control" required />
 	    		</div>
 	    		<h4>Type</h4>
 	    		<div class="input-group" style="padding-bottom: 30px;">
-	    			<label class="radio-inline"><input type="radio" name="type" value="1">Retailer</label>
-	    			<label class="radio-inline"><input type="radio" name="type" value="2">Supplier</label>
+	    			<label class="radio-inline"><input type="radio" name="type" value="1" required>Retailer</label>
+	    			<label class="radio-inline"><input type="radio" name="type" value="2" required>Supplier</label>
 	    		</div>
 		    	<h4>Address</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		  			<input id="newaddline1" type="text" name="streetAddress1" class="form-control" placeholder="Street address line 1"/>
-		  			<input id="newaddline2" type="text" name="streetAddress2" class="form-control" placeholder="Street address line 2"/>
-		  			<input id="newaddcity" type="text" name="city" class="form-control" placeholder="City" />
+		  			<input id="newaddline1" type="text" name="streetAddress1" class="form-control" placeholder="Street address line 1" required/>
+		  			<input id="newaddline2" type="text" name="streetAddress2" class="form-control" placeholder="Street address line 2" required/>
+		  			<input id="newaddcity" type="text" name="city" class="form-control" placeholder="City" required />
 		  			<div id="newaddstate">State </div>
-		  			<input id="newaddzip" type="text" name="zip" class="form-control" placeholder="Zip" />
+		  			<input id="newaddzip" type="text" name="zip" class="form-control" placeholder="Zip" required />
 		    	</div>
 		    	<h4>Phone</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newphone" type="text" name="phone" class="form-control" />
+	    			<input id="newphone" type="tel" name="phone" class="form-control" required />
 	    		</div>
 	    		<h4>Fax</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newfax" type="text" name="fax" class="form-control" />
+	    			<input id="newfax" type="tel" name="fax" class="form-control" required />
 	    		</div>
 	    	</form>
 	      </div>
@@ -104,33 +105,33 @@
 	        <h4 class="modal-title" id="myModalLabel">Update Client</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form id="updateForm" action = "updateClient.do" method="post">
+	      	<form id="updateForm" data-toggle="validator" action = "updateClient.do" method="post">
 	      		<input id="upid" type="hidden" name="clientId">
 	      		<input id="uptype" type="hidden" name="type">
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="upname" type="text" name="name" class="form-control" />
+	    			<input id="upname" type="text" name="name" class="form-control" required />
 	    		</div>
 	    		<h4>Email</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="upemail" type="text" name="email" class="form-control" />
+	    			<input id="upemail" type="text" name="email" class="form-control" required />
 	    		</div>
 		    	<h4>Address</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		    		<input id="upaid" type="hidden" name="addressId" />
-		  			<input id="upaddline1" type="text" name="streetAddress1" class="form-control" placeholder="Street address line 1"/>
-		  			<input id="upaddline2" type="text" name="streetAddress2" class="form-control" placeholder="Street address line 2"/>
-		  			<input id="upaddcity" type="text" name="city" class="form-control" placeholder="City" />
+		    		<input id="upaid" type="hidden" name="addressId" required />
+		  			<input id="upaddline1" type="text" name="streetAddress1" class="form-control" placeholder="Street address line 1" required />
+		  			<input id="upaddline2" type="text" name="streetAddress2" class="form-control" placeholder="Street address line 2" required />
+		  			<input id="upaddcity" type="text" name="city" class="form-control" placeholder="City" required />
 		  			<div id="upaddstate">State </div>
-		  			<input id="upaddzip" type="text" name="zip" class="form-control" placeholder="Zip" />
+		  			<input id="upaddzip" type="text" name="zip" class="form-control" placeholder="Zip" required />
 		    	</div>
 		    	<h4>Phone</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="upphone" type="text" name="phone" class="form-control" />
+	    			<input id="upphone" type="tel" name="phone" class="form-control" required />
 	    		</div>
 	    		<h4>Fax</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="upfax" type="text" name="fax" class="form-control" />
+	    			<input id="upfax" type="tel" name="fax" class="form-control" required />
 	    		</div>
 	    	</form>
 	      </div>

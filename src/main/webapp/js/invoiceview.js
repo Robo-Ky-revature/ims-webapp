@@ -13,9 +13,9 @@ $(document).ready(function(){
 	var clientdd = document.createElement("select");
 	clientdd.name = "client";
 	clientdd.id = "clientdd";
-	var dummy = document.createElement("option");
-	dummy.value = 0; dummy.text = "---"; dummy.label = "null";
-	clientdd.appendChild(dummy);
+	/*var dummy = document.createElement("option");
+	dummy.value = 0; dummy.text = ""; dummy.label = "null"; dummy.disabled = "disabled";
+	clientdd.appendChild(dummy);*/
 	$.ajax({
 		headers: {          
 	   		"Accept" : "application/json"
@@ -23,6 +23,10 @@ $(document).ready(function(){
 		url: "http://localhost:7001/IMS/getAllClients.do",
 		method: "GET",
 		success: function(resp){
+			/*if (clients[index] == undefined) {
+				parentform.find($("#clitype")).find($("#ctypetext")).html("---");
+				parentform.find($("#clitype")).find("input").val("0");
+			} else {*/
 			$.each(resp, function(i, item) {
 				item.index = i;
 				clients.push(item);
@@ -32,23 +36,31 @@ $(document).ready(function(){
 				op.label = i;
 				clientdd.appendChild(op);
 			})
+			var ctype = clients[0].type.clientId;
+				if (ctype == 1) {
+					$("#clitype").find($("#ctypetext")).html("Outgoing To Retailer");
+					$("#clitype").find("input").val("1");
+				} else if (ctype == 2) {
+					$("#clitype").find($("#ctypetext")).html("Incoming From Supplier");
+					$("#clitype").find("input").val("2");
+				}
 			clientdd.onchange = function(){
 				var parentform = $(this).parent().parent().parent();
 				var current = $(this).find(":selected");
 				var index = current.attr("label");
-				if (clients[index] == undefined) {
+				/*if (clients[index] == undefined) {
 					parentform.find($("#clitype")).find($("#ctypetext")).html("---");
 					parentform.find($("#clitype")).find("input").val("0");
-				} else {
+				} else {*/
 					var ctype = clients[index].type.clientId;
 					if (ctype == 1) {
 						parentform.find($("#clitype")).find($("#ctypetext")).html("Outgoing To Retailer");
 						parentform.find($("#clitype")).find("input").val("1");
-					} if (ctype == 2) {
+					} else if (ctype == 2) {
 						parentform.find($("#clitype")).find($("#ctypetext")).html("Incoming From Supplier");
 						parentform.find($("#clitype")).find("input").val("2");
 					}
-				}
+				//}
 			};
 			$("#selclient").append(clientdd);
 		}
@@ -85,9 +97,9 @@ $(document).ready(function(){
 		var productdd = document.createElement("select");
 		productdd.name = "upc";
 		productdd.id = "productdd";
-		var dummy2 = document.createElement("option");
+		/*var dummy2 = document.createElement("option");
 		dummy2.value = 0; dummy2.text = "---"; dummy2.label = "null";
-		productdd.appendChild(dummy2);
+		productdd.appendChild(dummy2);*/
 		for (var i=0; i<products.length; i++) {
 			var op = document.createElement("option");
 			op.value = products[i].upc;
@@ -99,7 +111,7 @@ $(document).ready(function(){
 		productdd.onchange = function(){
 			var parentrow = $(this).parent().parent();
 			var current = $(this).find(":selected");
-			if (current.attr("label") != "null") {
+			//if (current.attr("label") != "null") {
 				parentrow.find($(".ucost")).find($("div")).html(products[current.attr("label")].cost);
 				parentrow.find($(".ucost")).find($("input")).val(products[current.attr("label")].cost);
 				parentrow.find($(".onhand")).find($("div")).html(products[current.attr("label")].onHand);
@@ -107,34 +119,36 @@ $(document).ready(function(){
 				parentrow.find($(".qty")).find($(".qfield")).val(1);
 				var calctotal = parentrow.find($(".qty")).find($(".qfield")).val() * parentrow.find($(".ucost")).find($("div")).html()
 				parentrow.find($(".subtot")).html(calctotal);
-			} else {
+			/*} else {
 				parentrow.find($(".ucost")).find($("div")).html(0);
 				parentrow.find($(".ucost")).find($("input")).val(0);
 				parentrow.find($(".onhand")).find($("div")).html(0);
 				parentrow.find($(".onhand")).find($("input")).val(0);
 				parentrow.find($(".qty")).find($(".qfield")).val(0);
 				parentrow.find($(".subtot")).html(0);
-			}
+			}*/
 		};
 		newrow.appendChild(tdprod);
 		
 		var tdc = document.createElement("td");
 		tdc.className = "ucost";
 		var ucdiv = document.createElement("div");
-		ucdiv.innerHTML = "0";
+		ucdiv.innerHTML = products[0].cost;
 		tdc.appendChild(ucdiv);
 		var udin = document.createElement("input");
 		udin.name = "price";
+		udin.value = products[0].cost;
 		udin.hidden = true;
 		tdc.appendChild(udin);
 		newrow.appendChild(tdc);
 		var tdo = document.createElement("td");
 		tdo.className = "onhand";
 		var ohdiv = document.createElement("div");
-		ohdiv.innerHTML = "0";
+		ohdiv.innerHTML = products[0].onHand;
 		tdo.appendChild(ohdiv);
 		var ohin = document.createElement("input");
 		ohin.name = "onHand";
+		ohin.value = products[0].onHand;
 		ohin.hidden = true;
 		tdo.appendChild(ohin);
 		newrow.appendChild(tdo);
@@ -142,6 +156,8 @@ $(document).ready(function(){
 		tdq.className = "qty";
 		var qfield = document.createElement("input");
 		qfield.name = "quantity";
+		qfield.value = "1";
+		qfield.type = "number";
 		qfield.className = "qfield";
 		qfield.onchange = function() {
 			var parentrow = $(this).parent().parent();
@@ -156,7 +172,7 @@ $(document).ready(function(){
 		newrow.appendChild(tdq);
 		var tdst = document.createElement("td");
 		tdst.className = "subtot";
-		tdst.innerHTML = "0";
+		tdst.innerHTML = products[0].cost;
 		newrow.appendChild(tdst);
 		$("#productlines").append(newrow);
 	});

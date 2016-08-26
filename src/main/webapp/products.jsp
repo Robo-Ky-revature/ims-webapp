@@ -19,6 +19,7 @@
     <!-- Bootstrap core CSS -->
     <link href="css/custom.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.js"></script>
 	<script src="js/bootstrap.js"></script>
   </head>
 
@@ -60,14 +61,14 @@
 	        <h4 class="modal-title" id="myModalLabel">New Product</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form id="newForm" action = "createProduct.do" commandName="Product" method="POST" >
+	      	<form role="form" id="newForm" data-toggle="validator" action = "createProduct.do" commandName="Product" method="POST" >
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newname" type="text" name="productName" class="form-control" />
+	    			<input id="newname" type="text" name="productName" class="form-control" required />
 	    		</div>
 	    		<h4>Shorthand</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newshort" type="text" name="shortName" class="form-control" />
+	    			<input id="newshort" type="text" name="shortName" class="form-control" required />
 	    		</div>
 	    		<h4>Initial Quantity</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
@@ -79,19 +80,19 @@
 	    		</div>
 	    		<h4>Container Type</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newsize" type="text" name="size" class="form-control" />
+	    			<input id="newsize" type="text" name="size" class="form-control" required />
 	    		</div>
 	    		<h4>Unit Cost</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newucost" type="text" name="cost" class="form-control" />
+	    			<input id="newucost" type="text" name="cost" class="form-control" required />
 	    		</div>
 	    		<h4>Sales Cost</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="newacost" type="text" name="price" class="form-control" />
+	    			<input id="newacost" type="text" name="price" class="form-control" required />
 	    		</div>
 		    	<h4>Description</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		  			<textarea id="newdesc" class="form-control" name="description" rows="4"></textarea>
+		  			<textarea id="newdesc" class="form-control" name="description" rows="4" maxlength="255" required ></textarea>
 		    	</div>
 		    	<h4>Category</h4><!-- needs to e casted back to table -->
 	    		<div class="input-group" style="padding-bottom: 15px;">
@@ -116,11 +117,11 @@
 	        <h4 class="modal-title" id="myModalLabel">Update Product</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form id="updateForm" action = "updateProduct.do" method="post">
+	      	<form id="updateForm" data-toggle="validator" action = "updateProduct.do" method="post">
 	      		<input type="hidden" id="upupc" name = "upc">
 	      		<h4>Name</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="upname" type="text" name="productName" class="form-control" />
+	    			<input id="upname" type="text" name="productName" class="form-control" required />
 	    		</div>
 	    		<h4>Weight</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
@@ -128,15 +129,15 @@
 	    		</div>
 	    		<h4>Size</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="upsize" type="text" name="size" class="form-control" />
+	    			<input id="upsize" type="text" name="size" class="form-control" required />
 	    		</div>
 	    		<h4>Unit Cost</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="upcost" type="text" name="cost" class="form-control" />
+	    			<input id="upcost" type="text" name="cost" class="form-control" required />
 	    		</div>
 	    		<h4>Sales Cost</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
-	    			<input id="upprice" type="text" name="price" class="form-control" />
+	    			<input id="upprice" type="text" name="price" class="form-control" required />
 	    		</div>
 	    		<h4>On Hand Quantity</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
@@ -144,7 +145,7 @@
 	    		</div>
 		    	<h4>Description</h4>
 		    	<div class="input-group" style="padding-bottom: 15px;">
-		  			<textarea id="updesc" class="form-control" name="description" rows="4"></textarea>
+		  			<textarea id="updesc" class="form-control" name="description" rows="4" maxlength="255" required ></textarea>
 		    	</div>
 		    	<h4>Category</h4>
 	    		<div class="input-group" style="padding-bottom: 15px;">
